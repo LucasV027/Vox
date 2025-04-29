@@ -1,7 +1,6 @@
-#include <iostream>
+#include "Application.h"
 
 int main() {
-    std::cout << "Vox !" << std::endl;
-    
-    return 0;
+    Application vox;
+    vox.Run();
 }
