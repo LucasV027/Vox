@@ -16,11 +16,11 @@ endif ()
 
 add_executable(${PROJECT_NAME}
         src/main.cpp
-        src/Application.cpp
-        src/Application.h
-        src/Renderer.cpp
-        src/Renderer.h
-        src/Debug.h
+        src/app/Application.cpp
+        src/app/Application.h
+        src/app/Renderer.cpp
+        src/app/Renderer.h
+        src/app/Debug.h
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE src)
