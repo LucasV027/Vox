@@ -16,11 +16,28 @@ endif ()
 
 add_executable(${PROJECT_NAME}
         src/main.cpp
+
         src/app/Application.cpp
         src/app/Application.h
         src/app/Renderer.cpp
         src/app/Renderer.h
         src/app/Debug.h
+
+        src/opengl/IndexBuffer.cpp
+        src/opengl/IndexBuffer.h
+        src/opengl/Program.cpp
+        src/opengl/Program.h
+        src/opengl/Texture.cpp
+        src/opengl/Texture.h
+        src/opengl/VertexArray.cpp
+        src/opengl/VertexArray.h
+        src/opengl/VertexBuffer.cpp
+        src/opengl/VertexBuffer.h
+        src/opengl/VertexBufferLayout.cpp
+        src/opengl/VertexBufferLayout.h
+
+        src/extern/stb_image.cpp
+        src/extern/stb_image.h
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE src)
