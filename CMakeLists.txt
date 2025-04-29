@@ -18,6 +18,8 @@ add_executable(${PROJECT_NAME}
         src/main.cpp
         src/Application.cpp
         src/Application.h
+        src/Renderer.cpp
+        src/Renderer.h
         src/Debug.h
 )
 

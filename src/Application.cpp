@@ -2,12 +2,6 @@
 
 #include <iostream>
 
-#include <imgui.h>
-#include <imgui_impl_glfw.h>
-#include <imgui_impl_opengl3.h>
-
-#include "Debug.h"
-
 Application::Application() {
     // GLFW initialization
     if (!glfwInit()) {
@@ -37,28 +31,12 @@ Application::Application() {
         exit(1);
     }
 
-    // OpenGL context
-    GLint flags;
-    glGetIntegerv(GL_CONTEXT_FLAGS, &flags);
-    if (flags & GL_CONTEXT_FLAG_DEBUG_BIT) {
-        glEnable(GL_DEBUG_OUTPUT);
-        glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
-        glDebugMessageCallback(GLDebugMessageCallback, nullptr);
-        glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, nullptr, GL_TRUE);
-    }
-
-    // ImGui initialization
-    IMGUI_CHECKVERSION();
-    ImGui::CreateContext();
-    ImGui::StyleColorsClassic();
-    ImGui_ImplGlfw_InitForOpenGL(window, true);
-    ImGui_ImplOpenGL3_Init("#version 450 core");
+    renderer = new Renderer(window);
+    renderer->Init();
 }
 
 Application::~Application() {
-    ImGui_ImplOpenGL3_Shutdown();
-    ImGui_ImplGlfw_Shutdown();
-    ImGui::DestroyContext();
+    delete renderer;
 
     glfwDestroyWindow(window);
     glfwTerminate();
@@ -75,8 +53,7 @@ void Application::Run() {
         lastFrame = currentFrame;
 
         Update(deltaTime);
-        Render();
-
+        renderer->Render();
 
         glfwSwapBuffers(window);
         glfwPollEvents();
@@ -84,17 +61,3 @@ void Application::Run() {
 }
 
 void Application::Update(double deltaTime) {}
-
-void Application::Render() const {
-    glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-    ImGui_ImplOpenGL3_NewFrame();
-    ImGui_ImplGlfw_NewFrame();
-    ImGui::NewFrame();
-
-    ImGui::Text("FPS: %.1f", ImGui::GetIO().Framerate);
-
-    ImGui::Render();
-    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-}

@@ -6,6 +6,8 @@
 #include <GLFW/glfw3.h>
 #include <glad/glad.h> // Do not remove
 
+#include "Renderer.h"
+
 class Application {
 public:
     Application();
@@ -14,7 +16,6 @@ public:
 
 private:
     void Update(double deltaTime);
-    void Render() const;
 
 private:
     std::string title = "Vox";
@@ -22,4 +23,5 @@ private:
     int height = 480;
 
     GLFWwindow* window;
+    Renderer* renderer;
 };
