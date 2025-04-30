@@ -1,5 +1,7 @@
 #include "Application.h"
 
+#include "Time.h"
+
 Application::Application() {
     window = std::make_unique<Window>(1280, 720, "Vox");
     renderer = std::make_unique<Renderer>(window->Get());
@@ -9,16 +11,10 @@ Application::Application() {
 Application::~Application() = default;
 
 void Application::Run() {
-    double currentFrame = glfwGetTime();
-    double lastFrame = currentFrame;
-    double deltaTime;
-
     while (!window->ShouldClose()) {
-        currentFrame = glfwGetTime();
-        deltaTime = currentFrame - lastFrame;
-        lastFrame = currentFrame;
-
-        Update(deltaTime);
+        Time::Update();
+    
+        Update(Time::DeltaTime());
         renderer->Render();
 
         window->SwapBuffers();
