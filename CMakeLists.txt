@@ -27,7 +27,6 @@ add_executable(${PROJECT_NAME}
         src/app/Renderer.h
         src/app/Input.cpp
         src/app/Input.h
-        src/app/Debug.h
 
         src/opengl/IndexBuffer.cpp
         src/opengl/IndexBuffer.h
