@@ -12,8 +12,8 @@ public:
     bool IsKeyPressed(int key) const;
     bool IsMouseButtonPressed(int button) const;
     bool IsMouseFree() const;
-    bool IsWindowResized(int& newWidth, int& newHeight);
-    void GetMousePosition(int& x, int& y) const;
+    bool IsWindowResized(int& newWidth, int& newHeight) const;
+    void GetMousePosition(double& x, double& y) const;
 
 private:
     // Window resize

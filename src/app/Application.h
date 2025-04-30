@@ -5,6 +5,7 @@
 #include "Input.h"
 #include "Renderer.h"
 #include "Window.h"
+#include "core/Voxel.h"
 
 class Application {
 public:
@@ -16,4 +17,5 @@ private:
     std::unique_ptr<Window> window;
     std::unique_ptr<Renderer> renderer;
     std::unique_ptr<Input> inputs;
+    std::unique_ptr<Voxel> vox;
 };

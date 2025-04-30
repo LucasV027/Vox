@@ -37,10 +37,11 @@ void Renderer::Init() {
     ImGui_ImplOpenGL3_Init("#version 450 core");
 }
 
+void Renderer::BeginFrame() {
+    Clear(bg[0], bg[1], bg[2]);
+}
 
-void Renderer::Render() {
-    OpenGLRender();
-
+void Renderer::RenderUI() {
     ImGui_ImplOpenGL3_NewFrame();
     ImGui_ImplGlfw_NewFrame();
     ImGui::NewFrame();
@@ -51,15 +52,39 @@ void Renderer::Render() {
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
 
+void Renderer::SetPolygonMode(const bool state) const {
+    if (currentPolygonState != state) {
+        glPolygonMode(GL_FRONT_AND_BACK, state ? GL_FILL : GL_LINE);
+        currentPolygonState = state;
+    }
+}
+
+void Renderer::Clear(const float r, const float g, const float b, const float a) {
+    glClearColor(r, g, b, a);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+}
+
+void Renderer::Draw(const VertexArray& vao, const IndexBuffer& ibo, const Program& program) const {
+    vao.Bind();
+    ibo.Bind();
+    program.Bind();
+    glDrawElements(GL_TRIANGLES, ibo.GetCount(), GL_UNSIGNED_INT, nullptr);
+}
+
+void Renderer::Draw(const VertexArray& vao, const int first, const int count,
+                    const Program& program) const {
+    vao.Bind();
+    program.Bind();
+    glDrawArrays(GL_TRIANGLES, first, count);
+}
+
+
 void Renderer::ImGuiRender() {
     ImGui::Text("FPS: %.1f", ImGui::GetIO().Framerate);
     ImGui::ColorEdit3("Background Color", &bg[0]);
 }
 
-void Renderer::OpenGLRender() {
-    glClearColor(bg[0], bg[1], bg[2], 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-}
+
 
 namespace {
     // clang-format off

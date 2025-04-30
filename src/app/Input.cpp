@@ -46,7 +46,10 @@ Input::Input(GLFWwindow* window) {
     });
 }
 
-void Input::Poll() { glfwPollEvents(); }
+void Input::Poll() {
+    resizeEvent = false;
+    glfwPollEvents();
+}
 
 
 bool Input::IsKeyPressed(const int key) const {
@@ -62,18 +65,17 @@ bool Input::IsMouseButtonPressed(const int button) const {
 
 bool Input::IsMouseFree() const { return !ImGui::GetIO().WantCaptureMouse; }
 
-bool Input::IsWindowResized(int& newWidth, int& newHeight) {
+bool Input::IsWindowResized(int& newWidth, int& newHeight) const {
     if (resizeEvent) {
         newWidth = width;
         newHeight = height;
-        resizeEvent = false;
         return true;
     }
     return false;
 }
 
 
-void Input::GetMousePosition(int& x, int& y) const {
-    x = static_cast<int>(xPos);
-    y = static_cast<int>(yPos);
+void Input::GetMousePosition(double& x, double& y) const {
+    x = xPos;
+    y = yPos;
 }

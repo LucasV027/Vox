@@ -28,6 +28,13 @@ add_executable(${PROJECT_NAME}
         src/app/Input.cpp
         src/app/Input.h
 
+        src/core/Voxel.cpp
+        src/core/Voxel.h
+        src/core/Camera.cpp
+        src/core/Camera.h
+        src/core/Block.cpp
+        src/core/Block.h
+
         src/opengl/IndexBuffer.cpp
         src/opengl/IndexBuffer.h
         src/opengl/Program.cpp
@@ -43,6 +50,8 @@ add_executable(${PROJECT_NAME}
 
         src/extern/stb_image.cpp
         src/extern/stb_image.h
+        src/core/Chunk.cpp
+        src/core/Chunk.h
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE src)
