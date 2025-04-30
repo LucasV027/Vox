@@ -25,6 +25,8 @@ add_executable(${PROJECT_NAME}
         src/app/Time.h
         src/app/Renderer.cpp
         src/app/Renderer.h
+        src/app/Input.cpp
+        src/app/Input.h
         src/app/Debug.h
 
         src/opengl/IndexBuffer.cpp

@@ -15,11 +15,9 @@ public:
     bool ShouldClose() const;
     GLFWwindow* Get() const;
 
-
+    void SetCursorVisibility(bool visible) const;
+    void ChangeTitle(const std::string& newTitle) const;
+    void GetSize(int& width, int& height) const;
 private:
-    std::string title;
-    int width;
-    int height;
-
     GLFWwindow* windowPtr;
 };

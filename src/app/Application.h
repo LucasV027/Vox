@@ -2,6 +2,7 @@
 
 #include <memory>
 
+#include "Input.h"
 #include "Renderer.h"
 #include "Window.h"
 
@@ -12,9 +13,7 @@ public:
     void Run();
 
 private:
-    void Update(double deltaTime);
-
-private:
     std::unique_ptr<Window> window;
     std::unique_ptr<Renderer> renderer;
+    std::unique_ptr<Input> input;
 };

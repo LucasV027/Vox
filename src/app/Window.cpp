@@ -42,3 +42,14 @@ void Window::SwapBuffers() const { glfwSwapBuffers(windowPtr); }
 bool Window::ShouldClose() const { return glfwWindowShouldClose(windowPtr); }
 
 GLFWwindow* Window::Get() const { return windowPtr; }
+
+void Window::SetCursorVisibility(const bool visible) const {
+    glfwSetInputMode(windowPtr, GLFW_CURSOR, visible ? GLFW_CURSOR_NORMAL : GLFW_CURSOR_HIDDEN);
+}
+void Window::ChangeTitle(const std::string& newTitle) const {
+    glfwSetWindowTitle(windowPtr, newTitle.c_str());
+}
+
+void Window::GetSize(int& width, int& height) const {
+    glfwGetWindowSize(windowPtr, &width, &height);
+}
