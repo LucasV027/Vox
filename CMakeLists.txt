@@ -19,6 +19,8 @@ add_executable(${PROJECT_NAME}
 
         src/app/Application.cpp
         src/app/Application.h
+        src/app/Window.cpp
+        src/app/Window.h
         src/app/Renderer.cpp
         src/app/Renderer.h
         src/app/Debug.h
@@ -38,6 +40,7 @@ add_executable(${PROJECT_NAME}
 
         src/extern/stb_image.cpp
         src/extern/stb_image.h
+
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE src)

@@ -1,12 +1,9 @@
 #pragma once
 
-#include <string>
-
-#define GLFW_INCLUDE_NONE
-#include <GLFW/glfw3.h>
-#include <glad/glad.h> // Do not remove
+#include <memory>
 
 #include "Renderer.h"
+#include "Window.h"
 
 class Application {
 public:
@@ -18,10 +15,6 @@ private:
     void Update(double deltaTime);
 
 private:
-    std::string title = "Vox";
-    int width = 640;
-    int height = 480;
-
-    GLFWwindow* window;
-    Renderer* renderer;
+    std::unique_ptr<Window> window;
+    std::unique_ptr<Renderer> renderer;
 };
