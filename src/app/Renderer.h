@@ -1,9 +1,9 @@
 #pragma once
 
+#include "Camera.h"
 #include "UI.h"
-#include "opengl/IndexBuffer.h"
+#include "core/Voxel.h"
 #include "opengl/Program.h"
-#include "opengl/VertexArray.h"
 
 class GLFWwindow;
 
@@ -15,8 +15,8 @@ public:
     void BeginFrame();
     void RenderUI() const;
 
-    void Draw(const VertexArray& vao, const IndexBuffer& ibo, const Program& program) const;
-    void Clear(float r, float g, float b, float a = 1.0f);
+    void RenderVoxel(const Voxel& voxel);
+    Camera& GetCamera();
 
 private:
     static void OpenGLErrorCallback(unsigned int source, unsigned int type, unsigned int id,
@@ -26,4 +26,5 @@ private:
 private:
     GLFWwindow* window;
     std::unique_ptr<UI> ui;
+    Camera camera;
 };

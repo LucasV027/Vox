@@ -1,15 +1,22 @@
 #include "Camera.h"
 
 #define GLM_ENABLE_EXPERIMENTAL
-#include "glm/glm.hpp"
-#include "glm/gtc/matrix_transform.hpp"
-#include "glm/gtx/vector_angle.hpp"
+#include "../../cmake-build-debug/_deps/glm-src/glm/glm.hpp"
+#include "../../cmake-build-debug/_deps/glm-src/glm/gtc/matrix_transform.hpp"
+#include "../../cmake-build-debug/_deps/glm-src/glm/gtx/vector_angle.hpp"
 #define GLFW_INCLUDE_NONE
-#include "GLFW/glfw3.h"
-#include "glad/glad.h"
+#include "../../cmake-build-debug/_deps/glad-build/include/glad/glad.h"
+#include "../../cmake-build-debug/_deps/glfw-src/include/GLFW/glfw3.h"
 
 Camera::Camera(const glm::vec3& position, const glm::vec3& up, const glm::vec3& orientation) :
     position(position), up(up), orientation(orientation) {}
+
+void Camera::Init(const int width, const int height) {
+    this->width = width;
+    this->height = height;
+    aspectRatio = static_cast<float>(width) / static_cast<float>(height);
+}
+
 
 void Camera::Compute(const float fovDeg, const float aspectRatio, const float nearPlane,
                      const float farPlane) {

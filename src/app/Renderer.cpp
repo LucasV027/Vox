@@ -20,21 +20,18 @@ Renderer::Renderer(GLFWwindow* window) : window(window) {
     ui = std::make_unique<UI>(window);
 }
 
-void Renderer::BeginFrame() { Clear(ui->bg[0], ui->bg[1], ui->bg[2]); }
-
-void Renderer::RenderUI() const { ui->Render(); }
-
-void Renderer::Clear(const float r, const float g, const float b, const float a) {
-    glClearColor(r, g, b, a);
+void Renderer::BeginFrame() {
+    glClearColor(ui->bg[0], ui->bg[1], ui->bg[2], 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
-void Renderer::Draw(const VertexArray& vao, const IndexBuffer& ibo, const Program& program) const {
-    vao.Bind();
-    ibo.Bind();
-    program.Bind();
-    glDrawElements(GL_TRIANGLES, ibo.GetCount(), GL_UNSIGNED_INT, nullptr);
+void Renderer::RenderUI() const { ui->Render(); }
+
+void Renderer::RenderVoxel(const Voxel& voxel) {
+    // TODO
 }
+
+Camera& Renderer::GetCamera() { return camera; }
 
 namespace {
     // clang-format off

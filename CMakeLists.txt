@@ -29,11 +29,11 @@ add_executable(${PROJECT_NAME}
         src/app/UI.h
         src/app/Input.cpp
         src/app/Input.h
+        src/app/Camera.cpp
+        src/app/Camera.h
 
         src/core/Voxel.cpp
         src/core/Voxel.h
-        src/core/Camera.cpp
-        src/core/Camera.h
         src/core/Block.cpp
         src/core/Block.h
         src/core/Chunk.cpp

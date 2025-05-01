@@ -5,7 +5,6 @@
 Application::Application() {
     window = std::make_unique<Window>(1280, 720, "Vox");
     inputs = std::make_unique<Input>(window->Get());
-
     renderer = std::make_unique<Renderer>(window->Get());
 
     vox = std::make_unique<Voxel>();
@@ -23,7 +22,7 @@ void Application::Run() {
         vox->OnUpdate(*inputs, Time::DeltaTime());
 
         renderer->BeginFrame();
-        vox->OnRender(*renderer);
+        renderer->RenderVoxel(*vox);
         renderer->RenderUI();
 
         window->SwapBuffers();

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "glm/glm.hpp"
+#include "../../cmake-build-debug/_deps/glm-src/glm/glm.hpp"
 
-#include "app/Input.h"
+#include "Input.h"
 
 class Camera {
 public:
@@ -10,12 +10,15 @@ public:
                     const glm::vec3& up = glm::vec3(0.0f, 1.0f, 0.0f),
                     const glm::vec3& orientation = glm::vec3(0.0f, 0.0f, 1.0f));
 
+    void Init(int width, int height);
+
     void Compute(float fovDeg, float aspectRatio, float nearPlane, float farPlane);
 
     const glm::mat4& GetViewMatrix() const;
     const glm::mat4& GetProjectionMatrix() const;
 
     void Update();
+
     void ProcessInputs(const Input& inputs, double deltaTime);
 
 private:
