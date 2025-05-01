@@ -51,9 +51,14 @@ add_executable(${PROJECT_NAME}
         src/opengl/VertexBuffer.h
         src/opengl/VertexBufferLayout.cpp
         src/opengl/VertexBufferLayout.h
+        src/opengl/DebugCallBack.h
+        src/opengl/DebugCallBack.cpp
 
         src/extern/stb_image.cpp
         src/extern/stb_image.h
+        src/SkyBox.cpp
+        src/SkyBox.h
+
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE src)

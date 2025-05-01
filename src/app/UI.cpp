@@ -27,7 +27,6 @@ void UI::Render() {
     BeginFrame();
 
     ImGui::Text("FPS: %.1f", ImGui::GetIO().Framerate);
-    ImGui::ColorEdit3("Background Color", &bg[0]);
 
     EndFrame();
 }

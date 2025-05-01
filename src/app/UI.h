@@ -13,7 +13,4 @@ public:
 private:
     void BeginFrame();
     void EndFrame();
-
-private:
-    float bg[3] = {0.2f, 0.2f, 0.2f};
 };

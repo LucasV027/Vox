@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Camera.h"
+#include "SkyBox.h"
 #include "UI.h"
 #include "Window.h"
 #include "core/Voxel.h"
@@ -19,13 +20,9 @@ public:
     Camera& GetCamera();
 
 private:
-    static void OpenGLErrorCallback(unsigned int source, unsigned int type, unsigned int id,
-                                    unsigned int severity, int length, const char* message,
-                                    const void* userParam);
-
-private:
     std::unique_ptr<UI> ui;
     WindowRef window;
 
     Camera camera;
+    SkyBox skybox;
 };
