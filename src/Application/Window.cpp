@@ -48,7 +48,8 @@ bool Window::ShouldClose() const { return glfwWindowShouldClose(windowPtr); }
 GLFWwindow* Window::Get() const { return windowPtr; }
 
 void Window::SetCursorVisibility(const bool visible) const {
-    glfwSetInputMode(windowPtr, GLFW_CURSOR, visible ? GLFW_CURSOR_NORMAL : GLFW_CURSOR_HIDDEN);
+    const int mode = visible ? GLFW_CURSOR_NORMAL : GLFW_CURSOR_DISABLED;
+    glfwSetInputMode(windowPtr, GLFW_CURSOR, mode);
 }
 
 void Window::SetMousePosition(const double xPos, const double yPos) const {

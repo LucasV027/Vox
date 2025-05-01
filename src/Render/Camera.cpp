@@ -5,8 +5,8 @@
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtx/vector_angle.hpp"
 #define GLFW_INCLUDE_NONE
-#include "glad/glad.h"
 #include "GLFW/glfw3.h"
+#include "glad/glad.h"
 
 Camera::Camera(const glm::vec3& position, const glm::vec3& up, const glm::vec3& orientation) :
     position(position), up(up), orientation(orientation) {}
@@ -54,7 +54,7 @@ void Camera::ProcessInputs(const Input& inputs, const Window& window, const doub
 
         // Prevent camera from jumping on the first click
         if (firstClick) {
-            window.SetMousePosition(width / 2, height / 2);
+            window.SetMousePosition(width / 2., height / 2.);
             firstClick = false;
         }
 
@@ -78,8 +78,8 @@ void Camera::ProcessInputs(const Input& inputs, const Window& window, const doub
         // Rotate the orientation left and right
         orientation = rotate(orientation, glm::radians(-rotY), up);
 
-        // inputs.SetMousePosition(width / 2, height / 2);
-    } else if (!inputs.IsMouseButtonPressed(GLFW_RELEASE)) {
+        window.SetMousePosition(width / 2., height / 2.);
+    } else {
         window.SetCursorVisibility(true);
         firstClick = true;
     }
@@ -87,4 +87,6 @@ void Camera::ProcessInputs(const Input& inputs, const Window& window, const doub
     if (inputs.IsWindowResized(width, height)) {
         aspectRatio = static_cast<float>(width) / static_cast<float>(height);
     }
+
+    Update();
 }
