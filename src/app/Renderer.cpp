@@ -6,19 +6,7 @@
 #include "GLFW/glfw3.h"
 #include "glad/glad.h"
 
-#include "imgui.h"
-#include "imgui_impl_glfw.h"
-#include "imgui_impl_opengl3.h"
-
-Renderer::Renderer(GLFWwindow* window) : window(window) {}
-
-Renderer::~Renderer() {
-    ImGui_ImplOpenGL3_Shutdown();
-    ImGui_ImplGlfw_Shutdown();
-    ImGui::DestroyContext();
-}
-
-void Renderer::Init() {
+Renderer::Renderer(GLFWwindow* window) : window(window) {
     // OpenGL Debug
     GLint flags;
     glGetIntegerv(GL_CONTEXT_FLAGS, &flags);
@@ -29,35 +17,12 @@ void Renderer::Init() {
         glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, nullptr, GL_TRUE);
     }
 
-    // ImGui initialization
-    IMGUI_CHECKVERSION();
-    ImGui::CreateContext();
-    ImGui::StyleColorsDark();
-    ImGui_ImplGlfw_InitForOpenGL(window, true);
-    ImGui_ImplOpenGL3_Init("#version 450 core");
+    ui = std::make_unique<UI>(window);
 }
 
-void Renderer::BeginFrame() {
-    Clear(bg[0], bg[1], bg[2]);
-}
+void Renderer::BeginFrame() { Clear(ui->bg[0], ui->bg[1], ui->bg[2]); }
 
-void Renderer::RenderUI() {
-    ImGui_ImplOpenGL3_NewFrame();
-    ImGui_ImplGlfw_NewFrame();
-    ImGui::NewFrame();
-
-    ImGuiRender();
-
-    ImGui::Render();
-    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-}
-
-void Renderer::SetPolygonMode(const bool state) const {
-    if (currentPolygonState != state) {
-        glPolygonMode(GL_FRONT_AND_BACK, state ? GL_FILL : GL_LINE);
-        currentPolygonState = state;
-    }
-}
+void Renderer::RenderUI() const { ui->Render(); }
 
 void Renderer::Clear(const float r, const float g, const float b, const float a) {
     glClearColor(r, g, b, a);
@@ -70,21 +35,6 @@ void Renderer::Draw(const VertexArray& vao, const IndexBuffer& ibo, const Progra
     program.Bind();
     glDrawElements(GL_TRIANGLES, ibo.GetCount(), GL_UNSIGNED_INT, nullptr);
 }
-
-void Renderer::Draw(const VertexArray& vao, const int first, const int count,
-                    const Program& program) const {
-    vao.Bind();
-    program.Bind();
-    glDrawArrays(GL_TRIANGLES, first, count);
-}
-
-
-void Renderer::ImGuiRender() {
-    ImGui::Text("FPS: %.1f", ImGui::GetIO().Framerate);
-    ImGui::ColorEdit3("Background Color", &bg[0]);
-}
-
-
 
 namespace {
     // clang-format off

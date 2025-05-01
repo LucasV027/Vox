@@ -7,7 +7,6 @@ Application::Application() {
     inputs = std::make_unique<Input>(window->Get());
 
     renderer = std::make_unique<Renderer>(window->Get());
-    renderer->Init();
 
     vox = std::make_unique<Voxel>();
 }
@@ -15,6 +14,8 @@ Application::Application() {
 Application::~Application() = default;
 
 void Application::Run() {
+    Time::Update();
+
     while (!window->ShouldClose()) {
         Time::Update();
         inputs->Poll();

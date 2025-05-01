@@ -25,6 +25,8 @@ add_executable(${PROJECT_NAME}
         src/app/Time.h
         src/app/Renderer.cpp
         src/app/Renderer.h
+        src/app/UI.cpp
+        src/app/UI.h
         src/app/Input.cpp
         src/app/Input.h
 
@@ -34,6 +36,8 @@ add_executable(${PROJECT_NAME}
         src/core/Camera.h
         src/core/Block.cpp
         src/core/Block.h
+        src/core/Chunk.cpp
+        src/core/Chunk.h
 
         src/opengl/IndexBuffer.cpp
         src/opengl/IndexBuffer.h
@@ -50,8 +54,6 @@ add_executable(${PROJECT_NAME}
 
         src/extern/stb_image.cpp
         src/extern/stb_image.h
-        src/core/Chunk.cpp
-        src/core/Chunk.h
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE src)
