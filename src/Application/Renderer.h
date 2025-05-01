@@ -1,11 +1,10 @@
 #pragma once
 
-#include "Camera.h"
-#include "SkyBox.h"
+#include "Render/Camera.h"
+#include "Core/Voxel.h"
+#include "Render/SkyBox.h"
 #include "UI.h"
 #include "Window.h"
-#include "core/Voxel.h"
-#include "opengl/Program.h"
 
 
 class Renderer {

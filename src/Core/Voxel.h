@@ -1,7 +1,7 @@
 #pragma once
 
+#include "Application/Input.h"
 #include "Chunk.h"
-#include "app/Input.h"
 
 class Voxel {
 public:

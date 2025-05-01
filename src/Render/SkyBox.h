@@ -3,10 +3,10 @@
 #include <filesystem>
 #include <vector>
 
-#include "opengl/Program.h"
-#include "opengl/Texture.h"
-#include "opengl/VertexArray.h"
-#include "opengl/VertexBuffer.h"
+#include "Program.h"
+#include "Texture.h"
+#include "VertexArray.h"
+#include "VertexBuffer.h"
 
 class SkyBox {
 public:

@@ -4,7 +4,6 @@
 #include <fstream>
 #include <unordered_map>
 
-#include "glad/glad.h"
 #include "glm/fwd.hpp"
 
 class Program {

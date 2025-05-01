@@ -1,6 +1,6 @@
 #include "VertexBufferLayout.h"
 
-#include <glad/glad.h>
+#include "glad/glad.h"
 
 template <>
 void VertexBufferLayout::Push<float>(unsigned int count) {

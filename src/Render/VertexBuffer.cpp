@@ -1,7 +1,6 @@
 #include "VertexBuffer.h"
 
-#include <glad/glad.h>
-
+#include "glad/glad.h"
 
 VertexBuffer::VertexBuffer() : id(0) {}
 

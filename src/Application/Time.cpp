@@ -1,8 +1,6 @@
 #include "Time.h"
 
-#define GLFW_INCLUDE_NONE
-#include <GLFW/glfw3.h>
-#include <glad/glad.h>
+#include "GLFW/glfw3.h"
 
 double Time::currentFrame;
 double Time::deltaTime;

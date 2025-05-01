@@ -2,6 +2,10 @@
 
 #include <iostream>
 
+#define GLFW_INCLUDE_NONE
+#include "GLFW/glfw3.h"
+#include "glad/glad.h"
+
 Window::Window(const int width, const int height, const std::string& title) {
     // GLFW initialization
     if (!glfwInit()) {

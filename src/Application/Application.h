@@ -2,10 +2,10 @@
 
 #include <memory>
 
+#include "Core/Voxel.h"
 #include "Input.h"
 #include "Renderer.h"
 #include "Window.h"
-#include "core/Voxel.h"
 
 class Application {
 public:

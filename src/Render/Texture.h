@@ -3,7 +3,6 @@
 #include <filesystem>
 #include <vector>
 
-
 class Texture {
 public:
     Texture();

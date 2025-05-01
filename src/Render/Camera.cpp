@@ -5,8 +5,8 @@
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtx/vector_angle.hpp"
 #define GLFW_INCLUDE_NONE
-#include "GLFW/glfw3.h"
 #include "glad/glad.h"
+#include "GLFW/glfw3.h"
 
 Camera::Camera(const glm::vec3& position, const glm::vec3& up, const glm::vec3& orientation) :
     position(position), up(up), orientation(orientation) {}

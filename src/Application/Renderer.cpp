@@ -6,7 +6,7 @@
 #include "GLFW/glfw3.h"
 #include "glad/glad.h"
 
-#include "opengl/DebugCallBack.h"
+#include "Render/DebugCallBack.h"
 
 Renderer::Renderer(WindowRef window) : window(window) {
     // OpenGL Debug

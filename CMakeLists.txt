@@ -17,20 +17,18 @@ endif ()
 add_executable(${PROJECT_NAME}
         src/main.cpp
 
-        src/app/Application.cpp
-        src/app/Application.h
-        src/app/Window.cpp
-        src/app/Window.h
-        src/app/Time.cpp
-        src/app/Time.h
-        src/app/Renderer.cpp
-        src/app/Renderer.h
-        src/app/UI.cpp
-        src/app/UI.h
-        src/app/Input.cpp
-        src/app/Input.h
-        src/app/Camera.cpp
-        src/app/Camera.h
+        src/Application/Application.cpp
+        src/Application/Application.h
+        src/Application/Window.cpp
+        src/Application/Window.h
+        src/Application/Time.cpp
+        src/Application/Time.h
+        src/Application/Renderer.cpp
+        src/Application/Renderer.h
+        src/Application/UI.cpp
+        src/Application/UI.h
+        src/Application/Input.cpp
+        src/Application/Input.h
 
         src/core/Voxel.cpp
         src/core/Voxel.h
@@ -39,26 +37,27 @@ add_executable(${PROJECT_NAME}
         src/core/Chunk.cpp
         src/core/Chunk.h
 
-        src/opengl/IndexBuffer.cpp
-        src/opengl/IndexBuffer.h
-        src/opengl/Program.cpp
-        src/opengl/Program.h
-        src/opengl/Texture.cpp
-        src/opengl/Texture.h
-        src/opengl/VertexArray.cpp
-        src/opengl/VertexArray.h
-        src/opengl/VertexBuffer.cpp
-        src/opengl/VertexBuffer.h
-        src/opengl/VertexBufferLayout.cpp
-        src/opengl/VertexBufferLayout.h
-        src/opengl/DebugCallBack.h
-        src/opengl/DebugCallBack.cpp
+        src/Render/IndexBuffer.cpp
+        src/Render/IndexBuffer.h
+        src/Render/Program.cpp
+        src/Render/Program.h
+        src/Render/Texture.cpp
+        src/Render/Texture.h
+        src/Render/VertexArray.cpp
+        src/Render/VertexArray.h
+        src/Render/VertexBuffer.cpp
+        src/Render/VertexBuffer.h
+        src/Render/VertexBufferLayout.cpp
+        src/Render/VertexBufferLayout.h
+        src/Render/DebugCallBack.h
+        src/Render/DebugCallBack.cpp
+        src/Render/SkyBox.cpp
+        src/Render/SkyBox.h
+        src/Render/Camera.cpp
+        src/Render/Camera.h
 
         src/extern/stb_image.cpp
         src/extern/stb_image.h
-        src/SkyBox.cpp
-        src/SkyBox.h
-
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE src)
