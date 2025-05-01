@@ -5,7 +5,7 @@
 Application::Application() {
     window = std::make_unique<Window>(1280, 720, "Vox");
     inputs = std::make_unique<Input>(window->Get());
-    renderer = std::make_unique<Renderer>(window->Get());
+    renderer = std::make_unique<Renderer>(*window);
 
     vox = std::make_unique<Voxel>();
 }
@@ -20,6 +20,7 @@ void Application::Run() {
         inputs->Poll();
 
         vox->OnUpdate(*inputs, Time::DeltaTime());
+        renderer->GetCamera().ProcessInputs(*inputs, *window, Time::DeltaTime());
 
         renderer->BeginFrame();
         renderer->RenderVoxel(*vox);

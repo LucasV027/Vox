@@ -1,11 +1,11 @@
 #pragma once
 
-class GLFWwindow;
+#include "Window.h"
 
 class UI {
     friend class Renderer;
 public:
-    explicit UI(GLFWwindow* window);
+    explicit UI(WindowRef window);
     ~UI();
 
     void Render();

@@ -2,17 +2,18 @@
 
 #define GLFW_INCLUDE_NONE
 #include "GLFW/glfw3.h"
+#include "Window.h"
 #include "glad/glad.h"
 
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
 
-UI::UI(GLFWwindow* window) {
+UI::UI(WindowRef window) {
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGui::StyleColorsDark();
-    ImGui_ImplGlfw_InitForOpenGL(window, true);
+    ImGui_ImplGlfw_InitForOpenGL(window.Get(), true);
     ImGui_ImplOpenGL3_Init("#version 450 core");
 }
 

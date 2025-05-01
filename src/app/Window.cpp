@@ -46,6 +46,13 @@ GLFWwindow* Window::Get() const { return windowPtr; }
 void Window::SetCursorVisibility(const bool visible) const {
     glfwSetInputMode(windowPtr, GLFW_CURSOR, visible ? GLFW_CURSOR_NORMAL : GLFW_CURSOR_HIDDEN);
 }
+
+void Window::SetMousePosition(const double xPos, const double yPos) const {
+    glfwSetCursorPos(windowPtr, xPos, yPos);
+}
+
+void Window::GetMousePosition(double& x, double& y) const { glfwGetCursorPos(windowPtr, &x, &y); }
+
 void Window::ChangeTitle(const std::string& newTitle) const {
     glfwSetWindowTitle(windowPtr, newTitle.c_str());
 }

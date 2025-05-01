@@ -6,7 +6,7 @@
 #include "GLFW/glfw3.h"
 #include "glad/glad.h"
 
-Renderer::Renderer(GLFWwindow* window) : window(window) {
+Renderer::Renderer(WindowRef window) : window(window) {
     // OpenGL Debug
     GLint flags;
     glGetIntegerv(GL_CONTEXT_FLAGS, &flags);
@@ -18,6 +18,10 @@ Renderer::Renderer(GLFWwindow* window) : window(window) {
     }
 
     ui = std::make_unique<UI>(window);
+
+    int width, height;
+    window.GetSize(width, height);
+    camera.Init(width, height);
 }
 
 void Renderer::BeginFrame() {

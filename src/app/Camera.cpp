@@ -30,13 +30,7 @@ const glm::mat4& Camera::GetProjectionMatrix() const { return proj; }
 
 void Camera::Update() { Compute(45.f, aspectRatio, 0.1f, 100.0f); }
 
-void Camera::ProcessInputs(const Input& inputs, const double deltaTime) {
-    ProcessKeyboard(inputs, deltaTime);
-    ProcessMouse(inputs);
-    ProcessWindowResize(inputs);
-}
-
-void Camera::ProcessKeyboard(const Input& inputs, const double deltaTime) {
+void Camera::ProcessInputs(const Input& inputs, const Window& window, const double deltaTime) {
     const auto dt = static_cast<float>(deltaTime);
     if (inputs.IsKeyPressed(GLFW_KEY_W))
         position += dt * speed * orientation;
@@ -54,21 +48,19 @@ void Camera::ProcessKeyboard(const Input& inputs, const double deltaTime) {
         speed = 40.f;
     if (!inputs.IsKeyPressed(GLFW_KEY_LEFT_SHIFT))
         speed = 10.f;
-}
 
-void Camera::ProcessMouse(const Input& inputs) {
     if (inputs.IsMouseFree() && inputs.IsMouseButtonPressed(GLFW_MOUSE_BUTTON_LEFT)) {
-        // inputs.SetCursorVisibility(false);
+        window.SetCursorVisibility(false);
 
         // Prevent camera from jumping on the first click
         if (firstClick) {
-            // inputs.SetMousePosition(width / 2, height / 2);
+            window.SetMousePosition(width / 2, height / 2);
             firstClick = false;
         }
 
         // Stores the coordinates of the cursor
         double mouseX, mouseY;
-        inputs.GetMousePosition(mouseX, mouseY);
+        window.GetMousePosition(mouseX, mouseY);
 
         // Normalizes and shifts the coordinates of the cursor
         const float rotX = sensitivity * static_cast<float>(mouseY - (height / 2)) / height;
@@ -88,12 +80,10 @@ void Camera::ProcessMouse(const Input& inputs) {
 
         // inputs.SetMousePosition(width / 2, height / 2);
     } else if (!inputs.IsMouseButtonPressed(GLFW_RELEASE)) {
-        // inputs.SetCursorVisibility(true);
+        window.SetCursorVisibility(true);
         firstClick = true;
     }
-}
 
-void Camera::ProcessWindowResize(const Input& inputs) {
     if (inputs.IsWindowResized(width, height)) {
         aspectRatio = static_cast<float>(width) / static_cast<float>(height);
     }

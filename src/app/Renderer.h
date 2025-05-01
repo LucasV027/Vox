@@ -2,14 +2,14 @@
 
 #include "Camera.h"
 #include "UI.h"
+#include "Window.h"
 #include "core/Voxel.h"
 #include "opengl/Program.h"
 
-class GLFWwindow;
 
 class Renderer {
 public:
-    explicit Renderer(GLFWwindow* window);
+    explicit Renderer(WindowRef window);
     ~Renderer() = default;
 
     void BeginFrame();
@@ -24,7 +24,8 @@ private:
                                     const void* userParam);
 
 private:
-    GLFWwindow* window;
     std::unique_ptr<UI> ui;
+    WindowRef window;
+
     Camera camera;
 };

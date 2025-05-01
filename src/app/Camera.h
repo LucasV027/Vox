@@ -1,8 +1,9 @@
 #pragma once
 
-#include "../../cmake-build-debug/_deps/glm-src/glm/glm.hpp"
+#include "glm/glm.hpp"
 
 #include "Input.h"
+#include "Window.h"
 
 class Camera {
 public:
@@ -19,12 +20,7 @@ public:
 
     void Update();
 
-    void ProcessInputs(const Input& inputs, double deltaTime);
-
-private:
-    void ProcessKeyboard(const Input& inputs, double deltaTime);
-    void ProcessMouse(const Input& inputs);
-    void ProcessWindowResize(const Input& inputs);
+    void ProcessInputs(const Input& inputs, const Window& window, double deltaTime);
 
 private:
     glm::vec3 position;
