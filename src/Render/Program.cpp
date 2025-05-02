@@ -44,25 +44,25 @@ void Program::LocateVariable(const std::string& name) {
     }
 }
 
-void Program::SetUniform1i(const std::string& name, int value) {
+void Program::SetUniform1i(const std::string& name, const int value) const {
     if (locations.contains(name)) {
-        glUniform1i(locations[name], value);
+        glUniform1i(locations.at(name), value);
     } else {
         std::cout << "(SetUniform1i) Could not find uniform " << name << std::endl;
     }
 }
 
-void Program::SetUniform1f(const std::string& name, float value) {
+void Program::SetUniform1f(const std::string& name, const float value) const {
     if (locations.contains(name)) {
-        glUniform1f(locations[name], value);
+        glUniform1f(locations.at(name), value);
     } else {
         std::cout << "(SetUniform1f) Could not find uniform " << name << std::endl;
     }
 }
 
-void Program::SetUniformMat4f(const std::string& name, const glm::mat4& matrix) {
+void Program::SetUniformMat4f(const std::string& name, const glm::mat4& matrix) const {
     if (locations.contains(name)) {
-        glUniformMatrix4fv(locations[name], 1, GL_FALSE, &matrix[0][0]);
+        glUniformMatrix4fv(locations.at(name), 1, GL_FALSE, &matrix[0][0]);
     } else {
         std::cout << "(SetUniformMat4f) Could not find uniform " << name << std::endl;
     }

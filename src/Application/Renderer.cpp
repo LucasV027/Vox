@@ -20,54 +20,39 @@ Renderer::Renderer(WindowRef window) : windowRef(window) {
     }
 
     ui = std::make_unique<UI>(window);
-
-    int width, height;
-    window.GetSize(width, height);
-    camera.Init(width, height);
-
-    skybox.Init();
 }
 
-void Renderer::BeginFrame() { Clear(0.f, 0.f, 0.f, 1.0f); }
+void Renderer::BeginFrame() const { Clear(0.f, 0.f, 0.f, 1.0f); }
 
 void Renderer::RenderUI() const { ui->Render(); }
 
-void Renderer::Render() { RenderSkybox(); }
-
-
-void Renderer::RenderVoxel(const Voxel& voxel) {
-    // TODO
-}
-
-Camera& Renderer::GetCamera() { return camera; }
-
-void Renderer::OnInput(const Inputs& inputs, const double deltaTime) {
+void Renderer::OnInput(const Inputs& inputs, const double deltaTime) const {
     int width, height;
     if (inputs.IsWindowResized(width, height)) {
         SetViewPort(0, 0, width, height);
     }
-
-    camera.OnInput(inputs, deltaTime);
 }
 
-
-void Renderer::Clear(const float r, const float g, const float b, const float a) {
+void Renderer::Clear(const float r, const float g, const float b, const float a) const {
     glClearColor(r, g, b, a);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
-void Renderer::SetDepthTest(const bool val) { glDepthMask(val ? GL_TRUE : GL_FALSE); }
+void Renderer::SetDepthTest(const bool val) const { glDepthMask(val ? GL_TRUE : GL_FALSE); }
 
-void Renderer::SetViewPort(const int x, const int y, const int width, const int height) {
+void Renderer::SetViewPort(const int x, const int y, const int width, const int height) const {
     glad_glViewport(x, y, width, height);
 }
 
-void Renderer::RenderSkybox() {
-    SetDepthTest(false);
-    skybox.program.Bind();
-    skybox.program.SetUniformMat4f(
-        "mvp", camera.GetProjectionMatrix() * glm::mat4(glm::mat3(camera.GetViewMatrix())));
-    skybox.vao.Bind();
-    glDrawArrays(GL_TRIANGLES, 0, 36);
-    SetDepthTest(true);
+void Renderer::Draw(const VertexArray& vao, const IndexBuffer& ibo, const Program& program) const {
+    vao.Bind();
+    ibo.Bind();
+    program.Bind();
+    glDrawElements(GL_TRIANGLES, ibo.GetCount(), GL_UNSIGNED_INT, nullptr);
+}
+
+void Renderer::Draw(const VertexArray& vao, int first, int count, const Program& program) const {
+    vao.Bind();
+    program.Bind();
+    glDrawArrays(GL_TRIANGLES, first, count);
 }

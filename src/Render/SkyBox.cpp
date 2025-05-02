@@ -1,6 +1,6 @@
 #include "SkyBox.h"
 
-void SkyBox::Init() {
+void SkyBox::Init(const std::vector<std::filesystem::path>& faces) {
     vao.Init();
     vbo.Load(CUBE, sizeof(CUBE));
 
@@ -14,7 +14,17 @@ void SkyBox::Init() {
     program.LocateVariable("skybox");
 
     constexpr int slot = 0;
-    texture.LoadCubeMap(SKYBOX_PATHS);
+    texture.LoadCubeMap(faces);
     texture.Bind(slot);
     program.SetUniform1i("skybox", slot);
+}
+
+void SkyBox::Render(const Renderer& renderer, const Camera& camera) const {
+    renderer.SetDepthTest(false);
+    program.Bind();
+    program.SetUniformMat4f(
+        "mvp", camera.GetProjectionMatrix() * glm::mat4(glm::mat3(camera.GetViewMatrix())));
+
+    renderer.Draw(vao, 0, 36, program);
+    renderer.SetDepthTest(true);
 }

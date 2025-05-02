@@ -2,6 +2,7 @@
 
 #include <memory>
 
+#include "Core/Scene.h"
 #include "Inputs.h"
 #include "Renderer.h"
 #include "Timer.h"
@@ -17,5 +18,6 @@ private:
     std::unique_ptr<Window> window;
     std::unique_ptr<Renderer> renderer;
     std::unique_ptr<Inputs> inputs;
+    std::unique_ptr<Scene> scene;
     Timer deltaClock;
 };

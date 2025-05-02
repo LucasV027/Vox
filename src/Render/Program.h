@@ -9,7 +9,6 @@
 class Program {
 public:
     Program() = default;
-
     ~Program();
 
     void Create(const std::filesystem::path& vertexShader,
@@ -17,15 +16,11 @@ public:
 
     void LocateVariable(const std::string& name);
 
-    void SetUniform1i(const std::string& name, int value);
-
-    void SetUniform1f(const std::string& name, float value);
-
-    void SetUniformMat4f(const std::string& name, const glm::mat4& matrix);
-
+    void SetUniform1i(const std::string& name, int value) const;
+    void SetUniform1f(const std::string& name, float value) const;
+    void SetUniformMat4f(const std::string& name, const glm::mat4& matrix) const;
 
     void Bind() const;
-
     void Unbind() const;
 
 private:

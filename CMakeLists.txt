@@ -58,6 +58,8 @@ add_executable(${PROJECT_NAME}
 
         src/Extern/stb_image.cpp
         src/Extern/stb_image.h
+        src/Core/Scene.cpp
+        src/Core/Scene.h
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE src)
