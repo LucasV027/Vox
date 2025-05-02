@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Render/Camera.h"
 #include "Core/Voxel.h"
+#include "Render/Camera.h"
 #include "Render/SkyBox.h"
 #include "UI.h"
 #include "Window.h"
@@ -14,13 +14,17 @@ public:
 
     void BeginFrame();
     void RenderUI() const;
+    void Render();
+    void Clear(float r = 0.2f, float g = 0.2f, float b = 0.2f, float a = 1.0f);
+    void SetDepthTest(bool val);
 
+    void RenderSkybox();
     void RenderVoxel(const Voxel& voxel);
     Camera& GetCamera();
 
 private:
     std::unique_ptr<UI> ui;
-    WindowRef window;
+    WindowRef windowRef;
 
     Camera camera;
     SkyBox skybox;

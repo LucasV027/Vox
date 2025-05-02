@@ -2,11 +2,11 @@
 
 #include <unordered_map>
 
-class GLFWwindow;
+#include "Window.h"
 
-class Input {
+class Inputs {
 public:
-    explicit Input(GLFWwindow* window);
+    explicit Inputs(WindowRef windowRef);
     void Poll();
 
     bool IsKeyPressed(int key) const;
@@ -16,6 +16,8 @@ public:
     void GetMousePosition(double& x, double& y) const;
 
 private:
+    WindowRef windowRef;
+
     // Window resize
     bool resizeEvent = true;
     int width;

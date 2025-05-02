@@ -30,7 +30,7 @@ const glm::mat4& Camera::GetProjectionMatrix() const { return proj; }
 
 void Camera::Update() { Compute(45.f, aspectRatio, 0.1f, 100.0f); }
 
-void Camera::ProcessInputs(const Input& inputs, const Window& window, const double deltaTime) {
+void Camera::ProcessInputs(const Inputs& inputs, const Window& window, const double deltaTime) {
     const auto dt = static_cast<float>(deltaTime);
     if (inputs.IsKeyPressed(GLFW_KEY_W))
         position += dt * speed * orientation;

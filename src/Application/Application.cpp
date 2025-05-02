@@ -4,10 +4,8 @@
 
 Application::Application() : deltaClock() {
     window = std::make_unique<Window>(1280, 720, "Vox");
-    inputs = std::make_unique<Input>(window->Get());
+    inputs = std::make_unique<Inputs>(*window);
     renderer = std::make_unique<Renderer>(*window);
-
-    vox = std::make_unique<Voxel>();
 }
 
 Application::~Application() = default;
@@ -19,11 +17,10 @@ void Application::Run() {
         deltaClock.Update();
         inputs->Poll();
 
-        vox->OnUpdate(*inputs, deltaClock.DeltaTime());
         renderer->GetCamera().ProcessInputs(*inputs, *window, deltaClock.DeltaTime());
 
         renderer->BeginFrame();
-        renderer->RenderVoxel(*vox);
+        renderer->Render();
         renderer->RenderUI();
 
         window->SwapBuffers();

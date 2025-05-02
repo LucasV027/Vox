@@ -2,8 +2,7 @@
 
 #include <memory>
 
-#include "Core/Voxel.h"
-#include "Input.h"
+#include "Inputs.h"
 #include "Renderer.h"
 #include "Timer.h"
 #include "Window.h"
@@ -17,7 +16,6 @@ public:
 private:
     std::unique_ptr<Window> window;
     std::unique_ptr<Renderer> renderer;
-    std::unique_ptr<Input> inputs;
-    std::unique_ptr<Voxel> vox;
+    std::unique_ptr<Inputs> inputs;
     Timer deltaClock;
 };

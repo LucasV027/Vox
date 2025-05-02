@@ -1,13 +1,13 @@
 #pragma once
 
-#include "Application/Input.h"
+#include "Application/Inputs.h"
 #include "Chunk.h"
 
 class Voxel {
 public:
     Voxel();
 
-    void OnUpdate(const Input& inputs, double deltaTime);
+    void OnUpdate(const Inputs& inputs, double deltaTime);
 
 private:
     Chunk chunk;

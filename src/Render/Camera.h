@@ -2,7 +2,7 @@
 
 #include "glm/glm.hpp"
 
-#include "Application/Input.h"
+#include "Application/Inputs.h"
 #include "Application/Window.h"
 
 class Camera {
@@ -20,7 +20,7 @@ public:
 
     void Update();
 
-    void ProcessInputs(const Input& inputs, const Window& window, double deltaTime);
+    void ProcessInputs(const Inputs& inputs, const Window& window, double deltaTime);
 
 private:
     glm::vec3 position;

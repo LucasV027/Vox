@@ -27,8 +27,8 @@ add_executable(${PROJECT_NAME}
         src/Application/Renderer.h
         src/Application/UI.cpp
         src/Application/UI.h
-        src/Application/Input.cpp
-        src/Application/Input.h
+        src/Application/Inputs.cpp
+        src/Application/Inputs.h
 
         src/Core/Voxel.cpp
         src/Core/Voxel.h
