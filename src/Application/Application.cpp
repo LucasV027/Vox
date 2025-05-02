@@ -17,7 +17,7 @@ void Application::Run() {
         deltaClock.Update();
         inputs->Poll();
 
-        renderer->GetCamera().ProcessInputs(*inputs, *window, deltaClock.DeltaTime());
+        renderer->OnInput(*inputs, deltaClock.DeltaTime());
 
         renderer->BeginFrame();
         renderer->Render();

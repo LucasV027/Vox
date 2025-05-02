@@ -1,8 +1,6 @@
 #include "Inputs.h"
 
-#define GLFW_INCLUDE_NONE
 #include "GLFW/glfw3.h"
-#include "glad/glad.h"
 
 #include "imgui.h"
 
@@ -12,7 +10,6 @@ Inputs::Inputs(WindowRef windowRef) : windowRef(windowRef) {
     glfwSetWindowSizeCallback(
         windowRef.Get(), [](GLFWwindow* window, const int width, const int height) {
             if (auto* _this = static_cast<Inputs*>(glfwGetWindowUserPointer(window))) {
-                glViewport(0, 0, width, height);
                 _this->width = width;
                 _this->height = height;
                 _this->resizeEvent = true;
@@ -40,13 +37,6 @@ Inputs::Inputs(WindowRef windowRef) : windowRef(windowRef) {
                 }
             }
         });
-
-    glfwSetCursorPosCallback(windowRef.Get(), [](GLFWwindow* window, double xpos, double ypos) {
-        if (auto* _this = static_cast<Inputs*>(glfwGetWindowUserPointer(window))) {
-            _this->xPos = xpos;
-            _this->yPos = ypos;
-        }
-    });
 }
 
 void Inputs::Poll() {
@@ -78,7 +68,12 @@ bool Inputs::IsWindowResized(int& newWidth, int& newHeight) const {
 }
 
 
-void Inputs::GetMousePosition(double& x, double& y) const {
-    x = xPos;
-    y = yPos;
+void Inputs::GetMousePosition(double& x, double& y) const { windowRef.GetMousePosition(x, y); }
+
+void Inputs::SetCursorVisibility(const bool visible) const {
+    windowRef.SetCursorVisibility(visible);
+}
+
+void Inputs::SetMousePosition(const double xPos, const double yPos) const {
+    windowRef.SetMousePosition(xPos, yPos);
 }

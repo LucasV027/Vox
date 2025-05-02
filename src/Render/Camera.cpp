@@ -30,7 +30,7 @@ const glm::mat4& Camera::GetProjectionMatrix() const { return proj; }
 
 void Camera::Update() { Compute(45.f, aspectRatio, 0.1f, 100.0f); }
 
-void Camera::ProcessInputs(const Inputs& inputs, const Window& window, const double deltaTime) {
+void Camera::OnInput(const Inputs& inputs, const double deltaTime) {
     const auto dt = static_cast<float>(deltaTime);
     if (inputs.IsKeyPressed(GLFW_KEY_W))
         position += dt * speed * orientation;
@@ -50,17 +50,17 @@ void Camera::ProcessInputs(const Inputs& inputs, const Window& window, const dou
         speed = 10.f;
 
     if (inputs.IsMouseFree() && inputs.IsMouseButtonPressed(GLFW_MOUSE_BUTTON_LEFT)) {
-        window.SetCursorVisibility(false);
+        inputs.SetCursorVisibility(false);
 
         // Prevent camera from jumping on the first click
         if (firstClick) {
-            window.SetMousePosition(width / 2., height / 2.);
+            inputs.SetMousePosition(width / 2., height / 2.);
             firstClick = false;
         }
 
         // Stores the coordinates of the cursor
         double mouseX, mouseY;
-        window.GetMousePosition(mouseX, mouseY);
+        inputs.GetMousePosition(mouseX, mouseY);
 
         // Normalizes and shifts the coordinates of the cursor
         const float rotX = sensitivity * static_cast<float>(mouseY - (height / 2)) / height;
@@ -78,9 +78,9 @@ void Camera::ProcessInputs(const Inputs& inputs, const Window& window, const dou
         // Rotate the orientation left and right
         orientation = rotate(orientation, glm::radians(-rotY), up);
 
-        window.SetMousePosition(width / 2., height / 2.);
+        inputs.SetMousePosition(width / 2., height / 2.);
     } else {
-        window.SetCursorVisibility(true);
+        inputs.SetCursorVisibility(true);
         firstClick = true;
     }
 

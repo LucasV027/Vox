@@ -41,6 +41,15 @@ void Renderer::RenderVoxel(const Voxel& voxel) {
 
 Camera& Renderer::GetCamera() { return camera; }
 
+void Renderer::OnInput(const Inputs& inputs, const double deltaTime) {
+    int width, height;
+    if (inputs.IsWindowResized(width, height)) {
+        SetViewPort(0, 0, width, height);
+    }
+
+    camera.OnInput(inputs, deltaTime);
+}
+
 
 void Renderer::Clear(const float r, const float g, const float b, const float a) {
     glClearColor(r, g, b, a);
@@ -48,6 +57,10 @@ void Renderer::Clear(const float r, const float g, const float b, const float a)
 }
 
 void Renderer::SetDepthTest(const bool val) { glDepthMask(val ? GL_TRUE : GL_FALSE); }
+
+void Renderer::SetViewPort(const int x, const int y, const int width, const int height) {
+    glad_glViewport(x, y, width, height);
+}
 
 void Renderer::RenderSkybox() {
     SetDepthTest(false);

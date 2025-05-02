@@ -20,7 +20,7 @@ public:
 
     void Update();
 
-    void ProcessInputs(const Inputs& inputs, const Window& window, double deltaTime);
+    void OnInput(const Inputs& inputs, double deltaTime);
 
 private:
     glm::vec3 position;
