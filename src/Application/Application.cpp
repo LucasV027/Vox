@@ -1,8 +1,8 @@
 #include "Application.h"
 
-#include "Time.h"
+#include "Timer.h"
 
-Application::Application() {
+Application::Application() : deltaClock() {
     window = std::make_unique<Window>(1280, 720, "Vox");
     inputs = std::make_unique<Input>(window->Get());
     renderer = std::make_unique<Renderer>(*window);
@@ -13,14 +13,14 @@ Application::Application() {
 Application::~Application() = default;
 
 void Application::Run() {
-    Time::Update();
+    deltaClock.Start();
 
     while (!window->ShouldClose()) {
-        Time::Update();
+        deltaClock.Update();
         inputs->Poll();
 
-        vox->OnUpdate(*inputs, Time::DeltaTime());
-        renderer->GetCamera().ProcessInputs(*inputs, *window, Time::DeltaTime());
+        vox->OnUpdate(*inputs, deltaClock.DeltaTime());
+        renderer->GetCamera().ProcessInputs(*inputs, *window, deltaClock.DeltaTime());
 
         renderer->BeginFrame();
         renderer->RenderVoxel(*vox);

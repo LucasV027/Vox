@@ -21,8 +21,8 @@ add_executable(${PROJECT_NAME}
         src/Application/Application.h
         src/Application/Window.cpp
         src/Application/Window.h
-        src/Application/Time.cpp
-        src/Application/Time.h
+        src/Application/Timer.cpp
+        src/Application/Timer.h
         src/Application/Renderer.cpp
         src/Application/Renderer.h
         src/Application/UI.cpp
@@ -30,12 +30,12 @@ add_executable(${PROJECT_NAME}
         src/Application/Input.cpp
         src/Application/Input.h
 
-        src/core/Voxel.cpp
-        src/core/Voxel.h
-        src/core/Block.cpp
-        src/core/Block.h
-        src/core/Chunk.cpp
-        src/core/Chunk.h
+        src/Core/Voxel.cpp
+        src/Core/Voxel.h
+        src/Core/Block.cpp
+        src/Core/Block.h
+        src/Core/Chunk.cpp
+        src/Core/Chunk.h
 
         src/Render/IndexBuffer.cpp
         src/Render/IndexBuffer.h
@@ -56,8 +56,8 @@ add_executable(${PROJECT_NAME}
         src/Render/Camera.cpp
         src/Render/Camera.h
 
-        src/extern/stb_image.cpp
-        src/extern/stb_image.h
+        src/Extern/stb_image.cpp
+        src/Extern/stb_image.h
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE src)
