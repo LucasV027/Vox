@@ -1,8 +1,5 @@
 #include "Inputs.h"
 
-#include <iostream>
-#include <ostream>
-
 #include "GLFW/glfw3.h"
 
 #include "imgui.h"
