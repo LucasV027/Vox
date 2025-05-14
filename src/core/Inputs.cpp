@@ -1,5 +1,8 @@
 #include "Inputs.h"
 
+#include <iostream>
+#include <ostream>
+
 #include "GLFW/glfw3.h"
 
 #include "imgui.h"
@@ -39,10 +42,19 @@ Inputs::Inputs(WindowRef windowRef) : windowRef(windowRef) {
                 }
             }
         });
+
+    glfwSetScrollCallback(windowRef.Get(), [](GLFWwindow* window, double xOffset, double yOffset) {
+        if (auto* _this = static_cast<Inputs*>(glfwGetWindowUserPointer(window))) {
+            _this->scrollEvent = true;
+            _this->mouseScrollOffset.x = xOffset;
+            _this->mouseScrollOffset.y = yOffset;
+        }
+    });
 }
 
 void Inputs::Poll() {
     resizeEvent = false;
+    scrollEvent = false;
     glfwPollEvents();
 }
 
@@ -62,6 +74,9 @@ bool Inputs::IsMouseFree() const { return !ImGui::GetIO().WantCaptureMouse; }
 
 bool Inputs::IsWindowResized() const { return resizeEvent; }
 
+bool Inputs::IsMouseScrolled() const { return scrollEvent; }
+
+glm::dvec2 Inputs::GetScrollOffset() const { return mouseScrollOffset; }
 
 glm::dvec2 Inputs::GetMousePosition() const { return windowRef.GetMousePosition(); }
 

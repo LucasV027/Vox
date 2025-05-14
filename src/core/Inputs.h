@@ -14,8 +14,10 @@ public:
     bool IsMouseButtonPressed(int button) const;
     bool IsMouseFree() const;
     bool IsWindowResized() const;
+    bool IsMouseScrolled() const;
     glm::dvec2 GetMousePosition() const;
     glm::ivec2 GetWindowSize() const;
+    glm::dvec2 GetScrollOffset() const;
 
     // Output
     void SetCursorVisibility(bool visible) const;
@@ -33,4 +35,6 @@ private:
 
     // Mouse
     std::unordered_map<int, bool> mouseStates;
+    glm::dvec2 mouseScrollOffset;
+    bool scrollEvent = false;
 };

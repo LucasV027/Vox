@@ -17,7 +17,7 @@ private:
     void ProcessKeyboard(float dt) const;
     void ProcessMouse();
     void ProcessResize();
-
+    void ProcessScroll();
 private:
     Camera& camera;
 
@@ -28,4 +28,7 @@ private:
     glm::ivec2 windowSize;
 
     bool firstClick = true;
+
+    const float BASE_FOV = 90;
+    float zoom = 1.0f;
 };

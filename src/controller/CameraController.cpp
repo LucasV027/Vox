@@ -18,6 +18,7 @@ void CameraController::ProcessInputs(const double deltaTime) {
     ProcessResize();
     ProcessKeyboard(dt);
     ProcessMouse();
+    ProcessScroll();
 }
 
 void CameraController::ProcessKeyboard(const float dt) const {
@@ -44,6 +45,15 @@ void CameraController::ProcessKeyboard(const float dt) const {
 }
 
 void CameraController::ProcessMouse() {
+    // Reset zoom
+    if (inputs.IsMouseButtonPressed(GLFW_MOUSE_BUTTON_MIDDLE)) {
+        zoom = 1.0f;
+        camera.SetPerspective(BASE_FOV * zoom,
+                              static_cast<float>(windowSize.x) / static_cast<float>(windowSize.y),
+                              0.01f, 100.0f);
+    }
+
+    // Camera mouse control
     if (inputs.IsMouseFree() && inputs.IsMouseButtonPressed(GLFW_MOUSE_BUTTON_LEFT)) {
         if (firstClick) {
             inputs.SetMousePosition(windowSize.x / 2.0, windowSize.y / 2.0);
@@ -80,7 +90,22 @@ void CameraController::ProcessMouse() {
 void CameraController::ProcessResize() {
     if (inputs.IsWindowResized()) {
         windowSize = inputs.GetWindowSize();
-        camera.SetPerspective(
-            90, static_cast<float>(windowSize.x) / static_cast<float>(windowSize.y), 0.01f, 100.0f);
+        camera.SetPerspective(BASE_FOV * zoom,
+                              static_cast<float>(windowSize.x) / static_cast<float>(windowSize.y),
+                              0.01f, 100.0f);
+    }
+}
+void CameraController::ProcessScroll() {
+    if (inputs.IsMouseScrolled()) {
+        const auto offset = inputs.GetScrollOffset();
+
+        if (offset.y < 0.0f && zoom < 1.5f) {
+            zoom += 0.1f;
+        } else if (offset.y > 0.0f && zoom > 0.5f) {
+            zoom -= 0.1f;
+        }
+        camera.SetPerspective(BASE_FOV * zoom,
+                              static_cast<float>(windowSize.x) / static_cast<float>(windowSize.y),
+                              0.01f, 100.0f);
     }
 }
