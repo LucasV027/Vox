@@ -4,7 +4,7 @@
 
 #include "glad/glad.h"
 
-#include "Extern/stb_image.h"
+#include "extern/stb_image.h"
 
 Texture::Texture() : id(0) {}
 
