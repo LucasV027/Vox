@@ -2,6 +2,8 @@
 
 #include <string>
 
+#include "glm/vec2.hpp"
+
 class GLFWwindow;
 
 class Window {
@@ -18,9 +20,9 @@ public:
 
     void SetCursorVisibility(bool visible) const;
     void SetMousePosition(double xPos, double yPos) const;
-    void GetMousePosition(double& x, double& y) const;
     void ChangeTitle(const std::string& newTitle) const;
-    void GetSize(int& width, int& height) const;
+    glm::dvec2 GetMousePosition() const;
+    glm::ivec2 GetSize() const;
     float GetAspectRatio() const;
 
 private:

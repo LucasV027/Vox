@@ -56,18 +56,23 @@ void Window::SetMousePosition(const double xPos, const double yPos) const {
     glfwSetCursorPos(windowPtr, xPos, yPos);
 }
 
-void Window::GetMousePosition(double& x, double& y) const { glfwGetCursorPos(windowPtr, &x, &y); }
-
 void Window::ChangeTitle(const std::string& newTitle) const {
     glfwSetWindowTitle(windowPtr, newTitle.c_str());
 }
 
-void Window::GetSize(int& width, int& height) const {
-    glfwGetWindowSize(windowPtr, &width, &height);
+glm::dvec2 Window::GetMousePosition() const {
+    glm::dvec2 mousePos;
+    glfwGetCursorPos(windowPtr, &mousePos.x, &mousePos.y);
+    return mousePos;
+}
+
+glm::ivec2 Window::GetSize() const {
+    glm::ivec2 size;
+    glfwGetWindowSize(windowPtr, &size.x, &size.y);
+    return size;
 }
 
 float Window::GetAspectRatio() const {
-    int width, height;
-    GetSize(width, height);
-    return static_cast<float>(width) / static_cast<float>(height);
+    const auto size = GetSize();
+    return static_cast<float>(size.x) / static_cast<float>(size.y);
 }

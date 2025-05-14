@@ -25,8 +25,7 @@ private:
     float baseSpeed = 10.0f;
     float boostSpeed = 40.0f;
 
-    int width{};
-    int height{};
+    glm::ivec2 windowSize;
 
     bool firstClick = true;
 };

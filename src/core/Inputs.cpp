@@ -6,13 +6,14 @@
 
 Inputs::Inputs(WindowRef windowRef) : windowRef(windowRef) {
     glfwSetWindowUserPointer(windowRef.Get(), this);
-    windowRef.GetSize(width, height);
+
+    resizeSize = windowRef.GetSize();
 
     glfwSetWindowSizeCallback(
         windowRef.Get(), [](GLFWwindow* window, const int width, const int height) {
             if (auto* _this = static_cast<Inputs*>(glfwGetWindowUserPointer(window))) {
-                _this->width = width;
-                _this->height = height;
+                _this->resizeSize.x = width;
+                _this->resizeSize.y = height;
                 _this->resizeEvent = true;
             }
         });
@@ -59,19 +60,12 @@ bool Inputs::IsMouseButtonPressed(const int button) const {
 
 bool Inputs::IsMouseFree() const { return !ImGui::GetIO().WantCaptureMouse; }
 
-bool Inputs::IsWindowResized(int& newWidth, int& newHeight) const {
-    if (resizeEvent) {
-        newWidth = width;
-        newHeight = height;
-        return true;
-    }
-    return false;
-}
+bool Inputs::IsWindowResized() const { return resizeEvent; }
 
 
-void Inputs::GetMousePosition(double& x, double& y) const { windowRef.GetMousePosition(x, y); }
+glm::dvec2 Inputs::GetMousePosition() const { return windowRef.GetMousePosition(); }
 
-void Inputs::GetWindowSize(int& width, int& height) const { windowRef.GetSize(width, height); }
+glm::ivec2 Inputs::GetWindowSize() const { return windowRef.GetSize(); }
 
 void Inputs::SetCursorVisibility(const bool visible) const {
     windowRef.SetCursorVisibility(visible);

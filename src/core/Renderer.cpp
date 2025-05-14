@@ -19,9 +19,8 @@ Renderer::Renderer(WindowRef window) : windowRef(window) {
         glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, nullptr, GL_TRUE);
     }
 
-    int w, h;
-    window.GetSize(w, h);
-    SetViewPort(0, 0, w, h);
+    const auto windowSize = window.GetSize();
+    SetViewPort(0, 0, windowSize.x, windowSize.y);
 }
 
 void Renderer::BeginFrame() const { Clear(0.f, 0.f, 0.f, 1.0f); }

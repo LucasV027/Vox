@@ -6,8 +6,8 @@ RendererController::RendererController(Inputs& inputs, Renderer& renderer) :
 void RendererController::ProcessInputs(double deltaTime) { ProcessResize(); }
 
 void RendererController::ProcessResize() const {
-    int width, height;
-    if (inputs.IsWindowResized(width, height)) {
-        renderer.SetViewPort(0, 0, width, height);
+    if (inputs.IsWindowResized()) {
+        const auto newSize = inputs.GetWindowSize();
+        renderer.SetViewPort(0, 0, newSize.x, newSize.y);
     }
 }

@@ -6,9 +6,7 @@
 #include "glm/gtx/vector_angle.hpp"
 
 CameraController::CameraController(Inputs& inputs, Camera& camera) :
-    Controller(inputs), camera(camera) {
-    inputs.GetWindowSize(width, height);
-}
+    Controller(inputs), camera(camera), windowSize(inputs.GetWindowSize()) {}
 
 void CameraController::SetSensitivity(const float newSensitivity) { sensitivity = newSensitivity; }
 
@@ -48,17 +46,16 @@ void CameraController::ProcessKeyboard(const float dt) const {
 void CameraController::ProcessMouse() {
     if (inputs.IsMouseFree() && inputs.IsMouseButtonPressed(GLFW_MOUSE_BUTTON_LEFT)) {
         if (firstClick) {
-            inputs.SetMousePosition(width / 2.0, height / 2.0);
+            inputs.SetMousePosition(windowSize.x / 2.0, windowSize.y / 2.0);
             inputs.SetCursorVisibility(false);
             firstClick = false;
             return;
         }
 
-        double mouseX, mouseY;
-        inputs.GetMousePosition(mouseX, mouseY);
+        auto mousePos = inputs.GetMousePosition();
 
-        float rotX = sensitivity * static_cast<float>(mouseY - height / 2) / height;
-        float rotY = sensitivity * static_cast<float>(mouseX - width / 2) / width;
+        float rotX = sensitivity * static_cast<float>(mousePos.y - windowSize.y / 2) / windowSize.y;
+        float rotY = sensitivity * static_cast<float>(mousePos.x - windowSize.x / 2) / windowSize.x;
 
         glm::vec3 orientation = camera.GetOrientation();
         glm::vec3 up = {0.f, 1.f, 0.f};
@@ -73,7 +70,7 @@ void CameraController::ProcessMouse() {
         orientation = glm::rotate(orientation, glm::radians(-rotY), up);
 
         camera.SetOrientation(orientation);
-        inputs.SetMousePosition(width / 2.0, height / 2.0);
+        inputs.SetMousePosition(windowSize.x / 2.0, windowSize.y / 2.0);
     } else {
         inputs.SetCursorVisibility(true);
         firstClick = true;
@@ -81,11 +78,9 @@ void CameraController::ProcessMouse() {
 }
 
 void CameraController::ProcessResize() {
-    int newWidth, newHeight;
-    if (inputs.IsWindowResized(newWidth, newHeight)) {
-        width = newWidth;
-        height = newHeight;
-        camera.SetPerspective(90, static_cast<float>(width) / static_cast<float>(height), 0.01f,
-                              100.0f);
+    if (inputs.IsWindowResized()) {
+        windowSize = inputs.GetWindowSize();
+        camera.SetPerspective(
+            90, static_cast<float>(windowSize.x) / static_cast<float>(windowSize.y), 0.01f, 100.0f);
     }
 }

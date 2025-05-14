@@ -13,9 +13,9 @@ public:
     bool IsKeyPressed(int key) const;
     bool IsMouseButtonPressed(int button) const;
     bool IsMouseFree() const;
-    bool IsWindowResized(int& newWidth, int& newHeight) const;
-    void GetMousePosition(double& x, double& y) const;
-    void GetWindowSize(int& width, int& height) const;
+    bool IsWindowResized() const;
+    glm::dvec2 GetMousePosition() const;
+    glm::ivec2 GetWindowSize() const;
 
     // Output
     void SetCursorVisibility(bool visible) const;
@@ -26,8 +26,7 @@ private:
 
     // Window resize
     bool resizeEvent = true;
-    int width;
-    int height;
+    glm::ivec2 resizeSize;
 
     // Keyboard
     std::unordered_map<int, bool> keyStates;
