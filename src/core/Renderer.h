@@ -1,11 +1,11 @@
 #pragma once
 
 #include "Inputs.h"
-#include "Render/IndexBuffer.h"
-#include "Render/Program.h"
-#include "Render/VertexArray.h"
 #include "UI.h"
 #include "Window.h"
+#include "graphics/IndexBuffer.h"
+#include "graphics/Program.h"
+#include "graphics/VertexArray.h"
 
 class Renderer {
 public:

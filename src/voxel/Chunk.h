@@ -4,9 +4,9 @@
 
 #include "glm/vec3.hpp"
 
-#include "Application/Renderer.h"
 #include "Block.h"
-#include "Render/Camera.h"
+#include "core/Renderer.h"
+#include "graphics/Camera.h"
 
 class Chunk {
 public:

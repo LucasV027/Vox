@@ -2,11 +2,11 @@
 
 #include <memory>
 
-#include "Core/Scene.h"
 #include "Inputs.h"
 #include "Renderer.h"
 #include "Timer.h"
 #include "Window.h"
+#include "voxel/Scene.h"
 
 class Application {
 public:

@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Application/Inputs.h"
-#include "Application/Renderer.h"
 #include "Chunk.h"
-#include "Render/Camera.h"
-#include "Render/SkyBox.h"
+#include "core/Inputs.h"
+#include "core/Renderer.h"
+#include "graphics/Camera.h"
+#include "graphics/SkyBox.h"
 
 class Scene {
 public:

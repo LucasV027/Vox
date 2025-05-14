@@ -2,8 +2,8 @@
 
 #include "glm/glm.hpp"
 
-#include "Application/Inputs.h"
-#include "Application/Window.h"
+#include "core/Inputs.h"
+#include "core/Window.h"
 
 class Camera {
 public:

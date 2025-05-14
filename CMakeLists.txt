@@ -17,44 +17,44 @@ endif ()
 add_executable(${PROJECT_NAME}
         src/main.cpp
 
-        src/Application/Application.cpp
-        src/Application/Application.h
-        src/Application/Window.cpp
-        src/Application/Window.h
-        src/Application/Timer.cpp
-        src/Application/Timer.h
-        src/Application/Renderer.cpp
-        src/Application/Renderer.h
-        src/Application/UI.cpp
-        src/Application/UI.h
-        src/Application/Inputs.cpp
-        src/Application/Inputs.h
+        src/core/Application.cpp
+        src/core/Application.h
+        src/core/Window.cpp
+        src/core/Window.h
+        src/core/Timer.cpp
+        src/core/Timer.h
+        src/core/Renderer.cpp
+        src/core/Renderer.h
+        src/core/UI.cpp
+        src/core/UI.h
+        src/core/Inputs.cpp
+        src/core/Inputs.h
 
-        src/Core/Scene.cpp
-        src/Core/Scene.h
-        src/Core/Block.cpp
-        src/Core/Block.h
-        src/Core/Chunk.cpp
-        src/Core/Chunk.h
+        src/voxel/Scene.cpp
+        src/voxel/Scene.h
+        src/voxel/Block.cpp
+        src/voxel/Block.h
+        src/voxel/Chunk.cpp
+        src/voxel/Chunk.h
 
-        src/Render/IndexBuffer.cpp
-        src/Render/IndexBuffer.h
-        src/Render/Program.cpp
-        src/Render/Program.h
-        src/Render/Texture.cpp
-        src/Render/Texture.h
-        src/Render/VertexArray.cpp
-        src/Render/VertexArray.h
-        src/Render/VertexBuffer.cpp
-        src/Render/VertexBuffer.h
-        src/Render/VertexBufferLayout.cpp
-        src/Render/VertexBufferLayout.h
-        src/Render/DebugCallBack.h
-        src/Render/DebugCallBack.cpp
-        src/Render/SkyBox.cpp
-        src/Render/SkyBox.h
-        src/Render/Camera.cpp
-        src/Render/Camera.h
+        src/graphics/IndexBuffer.cpp
+        src/graphics/IndexBuffer.h
+        src/graphics/Program.cpp
+        src/graphics/Program.h
+        src/graphics/Texture.cpp
+        src/graphics/Texture.h
+        src/graphics/VertexArray.cpp
+        src/graphics/VertexArray.h
+        src/graphics/VertexBuffer.cpp
+        src/graphics/VertexBuffer.h
+        src/graphics/VertexBufferLayout.cpp
+        src/graphics/VertexBufferLayout.h
+        src/graphics/DebugCallBack.h
+        src/graphics/DebugCallBack.cpp
+        src/graphics/SkyBox.cpp
+        src/graphics/SkyBox.h
+        src/graphics/Camera.cpp
+        src/graphics/Camera.h
 
         src/Extern/stb_image.cpp
         src/Extern/stb_image.h
