@@ -18,13 +18,9 @@ Renderer::Renderer(WindowRef window) : windowRef(window) {
         glDebugMessageCallback(OpenGLErrorCallback, nullptr);
         glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, nullptr, GL_TRUE);
     }
-
-    ui = std::make_unique<UI>(window);
 }
 
 void Renderer::BeginFrame() const { Clear(0.f, 0.f, 0.f, 1.0f); }
-
-void Renderer::RenderUI() const { ui->Render(); }
 
 void Renderer::OnInput(const Inputs& inputs, const double deltaTime) const {
     int width, height;

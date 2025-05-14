@@ -5,6 +5,7 @@
 #include "Inputs.h"
 #include "Renderer.h"
 #include "Timer.h"
+#include "UI.h"
 #include "Window.h"
 #include "graphics/CameraController.h"
 #include "graphics/SkyBox.h"
@@ -19,6 +20,7 @@ private:
     std::unique_ptr<Window> window;
     std::unique_ptr<Renderer> renderer;
     std::unique_ptr<Inputs> inputs;
+    std::unique_ptr<UI> ui;
 
     std::unique_ptr<Camera> camera;
     std::unique_ptr<CameraController> cameraController;

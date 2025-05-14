@@ -1,11 +1,13 @@
 #include "Application.h"
 
 #include "Timer.h"
+#include "imgui.h"
 
 Application::Application() : deltaClock() {
     window = std::make_unique<Window>(1280, 720, "Vox");
     inputs = std::make_unique<Inputs>(*window);
     renderer = std::make_unique<Renderer>(*window);
+    ui = std::make_unique<UI>(*window);
 
     int w, h;
     window->GetSize(w, h);
@@ -34,7 +36,10 @@ void Application::Run() {
 
         renderer->BeginFrame();
         skybox.Render(*renderer, *camera);
-        renderer->RenderUI();
+
+        ui->BeginFrame();
+        ImGui::Text("FPS: %.1f", ImGui::GetIO().Framerate);
+        ui->EndFrame();
 
         window->SwapBuffers();
     }

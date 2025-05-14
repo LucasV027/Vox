@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Inputs.h"
-#include "UI.h"
 #include "Window.h"
 #include "graphics/IndexBuffer.h"
 #include "graphics/Program.h"
@@ -13,7 +12,6 @@ public:
     ~Renderer() = default;
 
     void BeginFrame() const;
-    void RenderUI() const;
 
     void OnInput(const Inputs& inputs, double deltaTime) const;
 
@@ -24,6 +22,5 @@ public:
     void Draw(const VertexArray& vao, int first, int count, const Program& program) const;
 
 private:
-    std::unique_ptr<UI> ui;
     WindowRef windowRef;
 };

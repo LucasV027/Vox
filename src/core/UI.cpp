@@ -23,14 +23,6 @@ UI::~UI() {
     ImGui::DestroyContext();
 }
 
-void UI::Render() {
-    BeginFrame();
-
-    ImGui::Text("FPS: %.1f", ImGui::GetIO().Framerate);
-
-    EndFrame();
-}
-
 void UI::BeginFrame() {
     ImGui_ImplOpenGL3_NewFrame();
     ImGui_ImplGlfw_NewFrame();
