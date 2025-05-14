@@ -27,4 +27,5 @@ void SkyBox::Render(const Renderer& renderer, const Camera& camera) const {
 
     renderer.Draw(vao, 0, 36, program);
     renderer.SetDepthTest(true);
+    program.Unbind();
 }

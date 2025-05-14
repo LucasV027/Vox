@@ -13,4 +13,7 @@ void Scene::OnInput(const Inputs& inputs, const double deltaTime) {
     camera.OnInput(inputs, deltaTime);
 }
 
-void Scene::OnRender(const Renderer& renderer) const { skybox.Render(renderer, camera); }
+void Scene::OnRender(const Renderer& renderer) const {
+    skybox.Render(renderer, camera);
+    chunk.Render(renderer, camera);
+}

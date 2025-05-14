@@ -2,9 +2,9 @@
 
 #include "Application/Inputs.h"
 #include "Application/Renderer.h"
+#include "Chunk.h"
 #include "Render/Camera.h"
 #include "Render/SkyBox.h"
-#include "Voxel.h"
 
 class Scene {
 public:
@@ -16,5 +16,5 @@ public:
 private:
     Camera camera;
     SkyBox skybox;
-    Voxel voxel;
+    Chunk chunk;
 };

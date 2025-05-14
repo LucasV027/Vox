@@ -30,8 +30,8 @@ add_executable(${PROJECT_NAME}
         src/Application/Inputs.cpp
         src/Application/Inputs.h
 
-        src/Core/Voxel.cpp
-        src/Core/Voxel.h
+        src/Core/Scene.cpp
+        src/Core/Scene.h
         src/Core/Block.cpp
         src/Core/Block.h
         src/Core/Chunk.cpp
@@ -58,8 +58,6 @@ add_executable(${PROJECT_NAME}
 
         src/Extern/stb_image.cpp
         src/Extern/stb_image.h
-        src/Core/Scene.cpp
-        src/Core/Scene.h
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE src)
