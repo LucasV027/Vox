@@ -6,7 +6,8 @@
 #include "Renderer.h"
 #include "Timer.h"
 #include "Window.h"
-#include "voxel/Scene.h"
+#include "graphics/CameraController.h"
+#include "graphics/SkyBox.h"
 
 class Application {
 public:
@@ -18,6 +19,10 @@ private:
     std::unique_ptr<Window> window;
     std::unique_ptr<Renderer> renderer;
     std::unique_ptr<Inputs> inputs;
-    std::unique_ptr<Scene> scene;
+
+    std::unique_ptr<Camera> camera;
+    std::unique_ptr<CameraController> cameraController;
+    SkyBox skybox;
+
     Timer deltaClock;
 };

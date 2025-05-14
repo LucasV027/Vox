@@ -23,7 +23,7 @@ void SkyBox::Render(const Renderer& renderer, const Camera& camera) const {
     renderer.SetDepthTest(false);
     program.Bind();
     program.SetUniformMat4f(
-        "mvp", camera.GetProjectionMatrix() * glm::mat4(glm::mat3(camera.GetViewMatrix())));
+        "mvp", camera.GetProjection() * glm::mat4(glm::mat3(camera.GetView())));
 
     renderer.Draw(vao, 0, 36, program);
     renderer.SetDepthTest(true);

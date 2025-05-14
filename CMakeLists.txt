@@ -30,13 +30,6 @@ add_executable(${PROJECT_NAME}
         src/core/Inputs.cpp
         src/core/Inputs.h
 
-        src/voxel/Scene.cpp
-        src/voxel/Scene.h
-        src/voxel/Block.cpp
-        src/voxel/Block.h
-        src/voxel/Chunk.cpp
-        src/voxel/Chunk.h
-
         src/graphics/IndexBuffer.cpp
         src/graphics/IndexBuffer.h
         src/graphics/Program.cpp
@@ -55,9 +48,11 @@ add_executable(${PROJECT_NAME}
         src/graphics/SkyBox.h
         src/graphics/Camera.cpp
         src/graphics/Camera.h
+        src/graphics/CameraController.cpp
+        src/graphics/CameraController.h
 
-        src/Extern/stb_image.cpp
-        src/Extern/stb_image.h
+        src/extern/stb_image.cpp
+        src/extern/stb_image.h
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE src)
