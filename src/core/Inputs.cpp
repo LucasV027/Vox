@@ -6,6 +6,7 @@
 
 Inputs::Inputs(WindowRef windowRef) : windowRef(windowRef) {
     glfwSetWindowUserPointer(windowRef.Get(), this);
+    windowRef.GetSize(width, height);
 
     glfwSetWindowSizeCallback(
         windowRef.Get(), [](GLFWwindow* window, const int width, const int height) {
@@ -69,6 +70,8 @@ bool Inputs::IsWindowResized(int& newWidth, int& newHeight) const {
 
 
 void Inputs::GetMousePosition(double& x, double& y) const { windowRef.GetMousePosition(x, y); }
+
+void Inputs::GetWindowSize(int& width, int& height) const { windowRef.GetSize(width, height); }
 
 void Inputs::SetCursorVisibility(const bool visible) const {
     windowRef.SetCursorVisibility(visible);

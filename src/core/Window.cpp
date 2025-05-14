@@ -65,3 +65,9 @@ void Window::ChangeTitle(const std::string& newTitle) const {
 void Window::GetSize(int& width, int& height) const {
     glfwGetWindowSize(windowPtr, &width, &height);
 }
+
+float Window::GetAspectRatio() const {
+    int width, height;
+    GetSize(width, height);
+    return static_cast<float>(width) / static_cast<float>(height);
+}

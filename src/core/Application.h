@@ -7,7 +7,7 @@
 #include "Timer.h"
 #include "UI.h"
 #include "Window.h"
-#include "graphics/CameraController.h"
+#include "controller/Controllers.h"
 #include "graphics/SkyBox.h"
 
 class Application {
@@ -21,9 +21,9 @@ private:
     std::unique_ptr<Renderer> renderer;
     std::unique_ptr<Inputs> inputs;
     std::unique_ptr<UI> ui;
+    std::unique_ptr<Controllers> controllers;
 
     std::unique_ptr<Camera> camera;
-    std::unique_ptr<CameraController> cameraController;
     SkyBox skybox;
 
     Timer deltaClock;

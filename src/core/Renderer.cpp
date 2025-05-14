@@ -18,16 +18,13 @@ Renderer::Renderer(WindowRef window) : windowRef(window) {
         glDebugMessageCallback(OpenGLErrorCallback, nullptr);
         glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, nullptr, GL_TRUE);
     }
+
+    int w, h;
+    window.GetSize(w, h);
+    SetViewPort(0, 0, w, h);
 }
 
 void Renderer::BeginFrame() const { Clear(0.f, 0.f, 0.f, 1.0f); }
-
-void Renderer::OnInput(const Inputs& inputs, const double deltaTime) const {
-    int width, height;
-    if (inputs.IsWindowResized(width, height)) {
-        SetViewPort(0, 0, width, height);
-    }
-}
 
 void Renderer::Clear(const float r, const float g, const float b, const float a) const {
     glClearColor(r, g, b, a);

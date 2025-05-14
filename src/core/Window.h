@@ -21,6 +21,7 @@ public:
     void GetMousePosition(double& x, double& y) const;
     void ChangeTitle(const std::string& newTitle) const;
     void GetSize(int& width, int& height) const;
+    float GetAspectRatio() const;
 
 private:
     GLFWwindow* windowPtr;

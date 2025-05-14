@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Inputs.h"
 #include "Window.h"
 #include "graphics/IndexBuffer.h"
 #include "graphics/Program.h"
@@ -12,9 +11,6 @@ public:
     ~Renderer() = default;
 
     void BeginFrame() const;
-
-    void OnInput(const Inputs& inputs, double deltaTime) const;
-
     void Clear(float r = 0.2f, float g = 0.2f, float b = 0.2f, float a = 1.0f) const;
     void SetDepthTest(bool val) const;
     void SetViewPort(int x, int y, int width, int height) const;

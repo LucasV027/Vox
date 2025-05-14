@@ -48,8 +48,16 @@ add_executable(${PROJECT_NAME}
         src/graphics/SkyBox.h
         src/graphics/Camera.cpp
         src/graphics/Camera.h
-        src/graphics/CameraController.cpp
-        src/graphics/CameraController.h
+
+
+        src/controller/Controller.cpp
+        src/controller/Controller.h
+        src/controller/Controllers.cpp
+        src/controller/Controllers.h
+        src/controller/RendererController.cpp
+        src/controller/RendererController.h
+        src/controller/CameraController.cpp
+        src/controller/CameraController.h
 
         src/extern/stb_image.cpp
         src/extern/stb_image.h

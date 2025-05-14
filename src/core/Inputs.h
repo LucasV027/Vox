@@ -15,10 +15,12 @@ public:
     bool IsMouseFree() const;
     bool IsWindowResized(int& newWidth, int& newHeight) const;
     void GetMousePosition(double& x, double& y) const;
+    void GetWindowSize(int& width, int& height) const;
 
     // Output
     void SetCursorVisibility(bool visible) const;
     void SetMousePosition(double xPos, double yPos) const;
+
 private:
     WindowRef windowRef;
 
