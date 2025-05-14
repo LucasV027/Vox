@@ -9,9 +9,9 @@ if (NOT CMAKE_BUILD_TYPE)
 endif ()
 
 if (CMAKE_BUILD_TYPE STREQUAL "Dist")
-    set(RES_DIR "./res")
+    set(ASSETS_DIR "assets")
 else ()
-    set(RES_DIR "${CMAKE_SOURCE_DIR}/res")
+    set(ASSETS_DIR "${CMAKE_SOURCE_DIR}/assets")
 endif ()
 
 add_executable(${PROJECT_NAME}
@@ -61,7 +61,7 @@ add_executable(${PROJECT_NAME}
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE src)
-target_compile_definitions(${PROJECT_NAME} PRIVATE RES_DIR="${RES_DIR}")
+target_compile_definitions(${PROJECT_NAME} PRIVATE ASSETS_DIR="${ASSETS_DIR}")
 
 include(cmake/dependencies.cmake)
 target_link_libraries(${PROJECT_NAME}
@@ -75,10 +75,10 @@ target_link_libraries(${PROJECT_NAME}
 if (CMAKE_BUILD_TYPE STREQUAL "Dist")
     add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
             COMMAND ${CMAKE_COMMAND} -E copy_directory
-            "${CMAKE_SOURCE_DIR}/res"
-            "$<TARGET_FILE_DIR:${PROJECT_NAME}>/res"
+            "${CMAKE_SOURCE_DIR}/assets"
+            "$<TARGET_FILE_DIR:${PROJECT_NAME}>/assets"
     )
 endif ()
 
 message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
-message(STATUS "Ressources directory: ${RES_DIR}")
+message(STATUS "Assets directory: ${ASSETS_DIR}")

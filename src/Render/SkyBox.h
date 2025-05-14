@@ -23,8 +23,8 @@ private:
     Texture texture;
     VertexBuffer vbo;
 
-    const std::filesystem::path skyboxFsPath = RES_DIR "/shaders/skybox.frag";
-    const std::filesystem::path skyboxVsPath = RES_DIR "/shaders/skybox.vert";
+    const std::filesystem::path skyboxFsPath = ASSETS_DIR "/shaders/skybox.frag";
+    const std::filesystem::path skyboxVsPath = ASSETS_DIR "/shaders/skybox.vert";
 
     static constexpr float CUBE[] = {
         -1.0f, 1.0f,  -1.0f, -1.0f, -1.0f, -1.0f, 1.0f,  -1.0f, -1.0f, 1.0f,  -1.0f, -1.0f,

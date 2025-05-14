@@ -34,8 +34,8 @@ private:
     VertexBuffer vbo;
     IndexBuffer ibo;
 
-    const std::filesystem::path fsPath = RES_DIR "/shaders/cube.frag";
-    const std::filesystem::path vsPath = RES_DIR "/shaders/cube.vert";
+    const std::filesystem::path fsPath = ASSETS_DIR "/shaders/cube.frag";
+    const std::filesystem::path vsPath = ASSETS_DIR "/shaders/cube.vert";
 
     static constexpr float CUBE[] = {
         0.5f, -0.5f, -0.5f, 0.5f, -0.5f, 0.5f, -0.5f, -0.5f, 0.5f, -0.5f, -0.5f, -0.5f,
