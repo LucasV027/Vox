@@ -13,7 +13,7 @@ public:
 
     void LoadCubeMap(const std::vector<std::filesystem::path>& faces);
 
-    void Bind(unsigned int slot = 0);
+    void Bind(unsigned int slot = 0) const;
 
     void Unbind();
 

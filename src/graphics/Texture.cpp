@@ -63,7 +63,7 @@ void Texture::LoadCubeMap(const std::vector<std::filesystem::path>& faces) {
     glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
 }
 
-void Texture::Bind(const unsigned int slot) {
+void Texture::Bind(const unsigned int slot) const {
     glActiveTexture(GL_TEXTURE0 + slot);
     glBindTexture(type, id);
 }

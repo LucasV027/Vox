@@ -18,9 +18,7 @@ Application::Application() : deltaClock() {
     controllers->Register<CameraController>(*inputs, *camera);
     controllers->Register<RendererController>(*inputs, *renderer);
 
-    skybox.Init({ASSETS_DIR "/textures/skybox/right.jpg", ASSETS_DIR "/textures/skybox/left.jpg",
-                 ASSETS_DIR "/textures/skybox/top.jpg", ASSETS_DIR "/textures/skybox/bottom.jpg",
-                 ASSETS_DIR "/textures/skybox/front.jpg", ASSETS_DIR "/textures/skybox/back.jpg"});
+    world = std::make_unique<World>();
 }
 
 Application::~Application() = default;
@@ -34,8 +32,7 @@ void Application::Run() {
 
         controllers->ProcessInputs(deltaClock.DeltaTime());
 
-        renderer->BeginFrame();
-        skybox.Render(*renderer, *camera);
+        renderer->Render(*camera, *world);
 
         ui->BeginFrame();
         const glm::vec3& pos = camera->GetPosition();

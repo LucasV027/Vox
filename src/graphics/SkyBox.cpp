@@ -1,5 +1,9 @@
 #include "SkyBox.h"
 
+#include <iostream>
+
+#include "RenderCommand.h"
+
 void SkyBox::Init(const std::vector<std::filesystem::path>& faces) {
     vao.Init();
     vbo.Load(CUBE, sizeof(CUBE));
@@ -9,23 +13,26 @@ void SkyBox::Init(const std::vector<std::filesystem::path>& faces) {
 
     vao.AddBuffer(vbo, skyboxVboLayout);
 
-    program.Create(skyboxVsPath, skyboxFsPath);
-    program.LocateVariable("mvp");
-    program.LocateVariable("skybox");
+    skyboxProgram.Create(skyboxVsPath, skyboxFsPath);
+    skyboxProgram.LocateVariable("view");
+    skyboxProgram.LocateVariable("proj");
+    skyboxProgram.LocateVariable("skybox");
 
-    constexpr int slot = 0;
     texture.LoadCubeMap(faces);
     texture.Bind(slot);
-    program.SetUniform1i("skybox", slot);
+    skyboxProgram.SetUniform1i("skybox", slot);
 }
 
-void SkyBox::Render(const Renderer& renderer, const Camera& camera) const {
-    renderer.SetDepthTest(false);
-    program.Bind();
-    program.SetUniformMat4f(
-        "mvp", camera.GetProjection() * glm::mat4(glm::mat3(camera.GetView())));
+void SkyBox::Render(const Camera& camera) const {
+    RenderCommand::SetDepthTest(false);
 
-    renderer.Draw(vao, 0, 36, program);
-    renderer.SetDepthTest(true);
-    program.Unbind();
+    skyboxProgram.Bind();
+
+    skyboxProgram.SetUniformMat4f("view", glm::mat4(glm::mat3(camera.GetView())));
+    skyboxProgram.SetUniformMat4f("proj", camera.GetProjection());
+    texture.Bind(slot);
+    RenderCommand::Draw(vao, 0, 36, skyboxProgram);
+
+    skyboxProgram.Unbind();
+    RenderCommand::SetDepthTest(true);
 }

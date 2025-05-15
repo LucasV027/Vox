@@ -49,6 +49,14 @@ add_executable(${PROJECT_NAME}
         src/graphics/Camera.h
         src/graphics/Renderer.cpp
         src/graphics/Renderer.h
+        src/graphics/RenderCommand.h
+        src/graphics/RenderCommand.cpp
+        src/graphics/Renderable.h
+
+        src/voxel/World.h
+        src/voxel/World.cpp
+        src/voxel/Cube.cpp
+        src/voxel/Cube.h
 
         src/controller/Controller.cpp
         src/controller/Controller.h

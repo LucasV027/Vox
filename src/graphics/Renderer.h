@@ -1,22 +1,25 @@
 #pragma once
 
-#include "core/Window.h"
-#include "IndexBuffer.h"
+#include "Camera.h"
 #include "Program.h"
-#include "VertexArray.h"
+#include "core/Window.h"
+
+class World;
 
 class Renderer {
 public:
     explicit Renderer(WindowRef window);
     ~Renderer() = default;
 
-    void BeginFrame() const;
-    void Clear(float r = 0.2f, float g = 0.2f, float b = 0.2f, float a = 1.0f) const;
-    void SetDepthTest(bool val) const;
     void SetViewPort(int x, int y, int width, int height) const;
-    void Draw(const VertexArray& vao, const IndexBuffer& ibo, const Program& program) const;
-    void Draw(const VertexArray& vao, int first, int count, const Program& program) const;
+
+    void Render(const Camera& camera, const World& world) const;
+
 
 private:
     WindowRef windowRef;
+    Program mainProgram;
+
+    const std::filesystem::path vsPath = ASSETS_DIR "/shaders/main.vert";
+    const std::filesystem::path fsPath = ASSETS_DIR "/shaders/main.frag";
 };

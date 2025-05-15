@@ -3,10 +3,12 @@
 #include <iostream>
 
 #define GLFW_INCLUDE_NONE
-#include "glad/glad.h"
 #include "GLFW/glfw3.h"
+#include "glad/glad.h"
 
 #include "DebugCallBack.h"
+#include "RenderCommand.h"
+#include "voxel/World.h"
 
 Renderer::Renderer(WindowRef window) : windowRef(window) {
     // OpenGL Debug
@@ -21,30 +23,23 @@ Renderer::Renderer(WindowRef window) : windowRef(window) {
 
     const auto windowSize = window.GetSize();
     SetViewPort(0, 0, windowSize.x, windowSize.y);
+
+    mainProgram.Create(vsPath, fsPath);
+    mainProgram.LocateVariable("view");
+    mainProgram.LocateVariable("proj");
+    mainProgram.LocateVariable("model");
 }
-
-void Renderer::BeginFrame() const { Clear(0.f, 0.f, 0.f, 1.0f); }
-
-void Renderer::Clear(const float r, const float g, const float b, const float a) const {
-    glClearColor(r, g, b, a);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-}
-
-void Renderer::SetDepthTest(const bool val) const { glDepthMask(val ? GL_TRUE : GL_FALSE); }
 
 void Renderer::SetViewPort(const int x, const int y, const int width, const int height) const {
     glad_glViewport(x, y, width, height);
 }
 
-void Renderer::Draw(const VertexArray& vao, const IndexBuffer& ibo, const Program& program) const {
-    vao.Bind();
-    ibo.Bind();
-    program.Bind();
-    glDrawElements(GL_TRIANGLES, ibo.GetCount(), GL_UNSIGNED_INT, nullptr);
-}
+void Renderer::Render(const Camera& camera, const World& world) const {
+    RenderCommand::Clear(0.f, 0.f, 0.f, 1.0f);
 
-void Renderer::Draw(const VertexArray& vao, int first, int count, const Program& program) const {
-    vao.Bind();
-    program.Bind();
-    glDrawArrays(GL_TRIANGLES, first, count);
+    mainProgram.Bind();
+    mainProgram.SetUniformMat4f("proj", camera.GetProjection());
+    mainProgram.SetUniformMat4f("view", camera.GetView());
+
+    world.Render(mainProgram, camera);
 }
