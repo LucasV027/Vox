@@ -1,7 +1,7 @@
 #include "CameraController.h"
 
+#include "core/Keys.h"
 #define GLM_ENABLE_EXPERIMENTAL
-#include "GLFW/glfw3.h"
 #include "glm/gtx/rotate_vector.hpp"
 #include "glm/gtx/vector_angle.hpp"
 
@@ -26,19 +26,19 @@ void CameraController::ProcessKeyboard(const float dt) const {
     const glm::vec3 orientation = camera.GetOrientation();
     constexpr glm::vec3 up = {0.f, 1.f, 0.f};
 
-    const float speed = inputs.IsKeyPressed(GLFW_KEY_LEFT_SHIFT) ? boostSpeed : baseSpeed;
+    const float speed = inputs.IsKeyPressed(Keyboard::leftShift) ? boostSpeed : baseSpeed;
 
-    if (inputs.IsKeyPressed(GLFW_KEY_W))
+    if (inputs.IsKeyPressed(Keyboard::w))
         pos += dt * speed * orientation;
-    if (inputs.IsKeyPressed(GLFW_KEY_S))
+    if (inputs.IsKeyPressed(Keyboard::s))
         pos -= dt * speed * orientation;
-    if (inputs.IsKeyPressed(GLFW_KEY_D))
+    if (inputs.IsKeyPressed(Keyboard::d))
         pos += dt * speed * glm::normalize(glm::cross(orientation, up));
-    if (inputs.IsKeyPressed(GLFW_KEY_A))
+    if (inputs.IsKeyPressed(Keyboard::a))
         pos -= dt * speed * glm::normalize(glm::cross(orientation, up));
-    if (inputs.IsKeyPressed(GLFW_KEY_SPACE))
+    if (inputs.IsKeyPressed(Keyboard::space))
         pos += dt * speed * up;
-    if (inputs.IsKeyPressed(GLFW_KEY_LEFT_CONTROL))
+    if (inputs.IsKeyPressed(Keyboard::leftControl))
         pos -= dt * speed * up;
 
     camera.SetPosition(pos);
@@ -46,7 +46,7 @@ void CameraController::ProcessKeyboard(const float dt) const {
 
 void CameraController::ProcessMouse() {
     // Reset zoom
-    if (inputs.IsMouseButtonPressed(GLFW_MOUSE_BUTTON_MIDDLE)) {
+    if (inputs.IsMouseButtonPressed(MouseButton::buttonMiddle)) {
         zoom = 1.0f;
         camera.SetPerspective(BASE_FOV * zoom,
                               static_cast<float>(windowSize.x) / static_cast<float>(windowSize.y),
@@ -54,7 +54,7 @@ void CameraController::ProcessMouse() {
     }
 
     // Camera mouse control
-    if (inputs.IsMouseFree() && inputs.IsMouseButtonPressed(GLFW_MOUSE_BUTTON_LEFT)) {
+    if (inputs.IsMouseFree() && inputs.IsMouseButtonPressed(MouseButton::buttonLeft)) {
         if (firstClick) {
             inputs.SetMousePosition(windowSize.x / 2.0, windowSize.y / 2.0);
             inputs.SetCursorVisibility(false);
