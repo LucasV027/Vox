@@ -3,10 +3,10 @@
 #include <iostream>
 
 #define GLFW_INCLUDE_NONE
-#include "GLFW/glfw3.h"
 #include "glad/glad.h"
+#include "GLFW/glfw3.h"
 
-#include "graphics/DebugCallBack.h"
+#include "DebugCallBack.h"
 
 Renderer::Renderer(WindowRef window) : windowRef(window) {
     // OpenGL Debug

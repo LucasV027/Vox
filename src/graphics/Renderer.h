@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Window.h"
-#include "graphics/IndexBuffer.h"
-#include "graphics/Program.h"
-#include "graphics/VertexArray.h"
+#include "core/Window.h"
+#include "IndexBuffer.h"
+#include "Program.h"
+#include "VertexArray.h"
 
 class Renderer {
 public:

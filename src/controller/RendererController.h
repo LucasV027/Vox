@@ -1,8 +1,8 @@
 #pragma once
 
+#include "graphics/Renderer.h"
 #include "Controller.h"
 #include "core/Inputs.h"
-#include "core/Renderer.h"
 
 class RendererController final : public Controller {
 public:

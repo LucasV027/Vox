@@ -2,8 +2,8 @@
 
 #include <memory>
 
+#include "graphics/Renderer.h"
 #include "Inputs.h"
-#include "Renderer.h"
 #include "Timer.h"
 #include "UI.h"
 #include "Window.h"

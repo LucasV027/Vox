@@ -23,12 +23,11 @@ add_executable(${PROJECT_NAME}
         src/core/Window.h
         src/core/Timer.cpp
         src/core/Timer.h
-        src/core/Renderer.cpp
-        src/core/Renderer.h
         src/core/UI.cpp
         src/core/UI.h
         src/core/Inputs.cpp
         src/core/Inputs.h
+        src/core/Keys.h
 
         src/graphics/IndexBuffer.cpp
         src/graphics/IndexBuffer.h
@@ -48,7 +47,8 @@ add_executable(${PROJECT_NAME}
         src/graphics/SkyBox.h
         src/graphics/Camera.cpp
         src/graphics/Camera.h
-
+        src/graphics/Renderer.cpp
+        src/graphics/Renderer.h
 
         src/controller/Controller.cpp
         src/controller/Controller.h
@@ -61,7 +61,6 @@ add_executable(${PROJECT_NAME}
 
         src/extern/stb_image.cpp
         src/extern/stb_image.h
-        src/core/Keys.h
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE src)

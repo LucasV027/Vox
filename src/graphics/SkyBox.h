@@ -5,10 +5,10 @@
 
 #include "Camera.h"
 #include "Program.h"
+#include "Renderer.h"
 #include "Texture.h"
 #include "VertexArray.h"
 #include "VertexBuffer.h"
-#include "core/Renderer.h"
 
 class SkyBox {
 public:
